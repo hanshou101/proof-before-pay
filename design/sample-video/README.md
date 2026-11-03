@@ -9,7 +9,7 @@
 
 ## 0. 先看結果
 
-- 成片：`proof/video/proof-before-pay-demo.mp4`（不進 Git；公開倉庫 Release 附件）。2:15（135.1 s），1920×1080 H.264 + AAC 192k，響度 −14.1 LUFS（LRA 2.9），Whisper 回聽與旁白稿逐字比對 WER 0.3%（唯一差異：「Sent」聽成同音的「Cent」，字幕寫的是 Sent）。
+- 成片：`proof/video/proof-before-pay-demo.mp4`（不進 Git；公開倉庫 Release 附件）。2:15（135.7 s），1920×1080 H.264 + AAC 192k，響度 −14.1 LUFS（LRA 2.9），Whisper 回聽與旁白稿逐字比對 WER 0.3%（唯一差異：「Sent」聽成同音的「Cent」，字幕寫的是 Sent）。
 - 盲排第 1 輪（主控校準，2026-11-03）：成片和 7 件得獎作一起，隨機字母，評委只看分鏡圖（同一組時間點）、前 3 分鐘逐字稿與片長。
 
 | 評委 | 我們的名次 | 排在我們之下的得獎作 | 分數 |

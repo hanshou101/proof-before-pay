@@ -19,7 +19,7 @@
 | T6 | `docs/process/T6.md` §1（6 條） | `packages/agent/test/` 8 檔（現 89 支） | 首跑 6 failed / 43 passed（已實作）；第 2 輪 23 failed / 38（退回舊 src） | #23 #24 #26 #27 | 89 passed、typecheck exit 0、`verify.sh` ALL PASS；AC-8 9/9 ×3、AC-10 9/9 ×3（T6 §4、§7.4） | #23 `MERGED` 2026-10-22T17:16:49Z；#26 `MERGED` 2026-10-22T17:47:57Z |
 | T7 | `docs/process/T7.md` §1（2 條） | `apps/server/test/`（現 11 檔 65 支） | 不是先紅（T7 §2 開頭自認）；三盞紅燈是實作後跑出 | #18 #19 #21 #22 | 49 passed（現 65）、typecheck/build exit 0、`verify.sh` ALL PASS（T7 §4） | #18 `MERGED` 2026-10-22T16:45:44Z；#21 `MERGED` 2026-10-22T17:14:20Z |
 | T8 | `docs/process/T8.md` §1（8 條） | `apps/server/test/`、`apps/web/e2e/*`、`apps/web/src/state/reduce.test.ts` | 紅燈是反向驗證與 E2E 缺陷（T8 §2 a–e），非先紅 | #34 #35 #36 #37 #38 #39 #41 | 分段 7 段各 `ALL PASS`；完整復驗 55/56（AC-14 沙箱額度），換帳號補跑 AC-14＋截圖 PASS（T8 §7.7–§7.8） | #34 `MERGED` 2026-10-29T16:23:38Z；#38 `MERGED` 2026-10-30T02:46:39Z；#41 `MERGED` 2026-10-30T04:59:39Z |
-| T12（包裝） | `docs/process/T12.md` §1（5 條；第 5 條盲排是主控的活） | `scripts/verify.d/95-submission.sh`（封面比例、圖庫上限、表單欄位、金鑰佔位符、公開網址、LICENSE） | 三個負控制各紅一次（封面尺寸／缺 Built with／影片連結指回私有倉庫）；本票產物由 AME-1152 打樣，不是先紅 | #49 | 匿名 clone：`npm run setup` exit 0；`verify.sh --ci` 52 PASS / 10 SKIP / 0 FAIL、exit 0；README 14 個連結匿名可開；ffprobe 135.1 s；公開與私有 Release 的 mp4 sha256 相同 | #49 `MERGED` 2026-11-03T04:33:09Z（4947824） |
+| T12（包裝） | `docs/process/T12.md` §1（5 條；第 5 條盲排是主控的活） | `scripts/verify.d/95-submission.sh`（封面比例、圖庫上限、表單欄位、金鑰佔位符、公開網址、LICENSE） | 三個負控制各紅一次（封面尺寸／缺 Built with／影片連結指回私有倉庫）；本票產物由 AME-1152 打樣，不是先紅 | #49 | 匿名 clone：`npm run setup` exit 0；`verify.sh --ci` 52 PASS / 10 SKIP / 0 FAIL、exit 0；README 14 個連結匿名可開；ffprobe 135.7 s；公開與私有 Release 的 mp4 sha256 相同 | #49 `MERGED` 2026-11-03T04:33:09Z（4947824） |
 
 ## 稽核表
 

@@ -280,7 +280,7 @@ Claude Code (Anthropic Claude Opus) and DeepSeek-based coding agents for buildin
 | 6 | 演示視頻（< 3:00、YouTube、英文、無版權音樂） | 成片 ✅；YouTube ⏳ 待用戶 | `ffprobe`：`duration 135.700000`（2:15）、`h264 1920x1080`、`aac`；旁白 Kokoro-82M（Apache-2.0）合成，無音樂；英文旁白＋燒入字幕（Whisper 回聽 WER 0.3%）；`design/sample-video/README.md`。已掛公開 Release `v1.0`，匿名可下載 |
 | 7 | 測試權限 | ⏳ 主控 | §2 測試說明；四個 `<…>` 由主控提交當天另交用戶 |
 | 8 | 既有項目說明 | ✅ 不適用 | 新作品（2026-10-22 從模板新建） |
-| 9 | 語言 | ✅ 是 | 全英文（README、故事、影片旁白與字幕、Built with） |
+| 9 | 語言 | ✅ 是（評委看的材料） | 評委看的材料全英文：README（最底一節 `Repository map (文档组织)` 已譯成英文，標題括號留模板節名）、故事、影片旁白與字幕、Built with。`AGENTS.md`、`docs/`、`design/` 筆記、`.frac.md`、`.env.example` 的註解、部分程式（註解、測試名、內部腳本）、`scripts/verify.sh` 印的檢查名是團隊內部工作文件，用中文；README 那一節第一段用英文寫明 |
 
 ## 5. 人工步骤（给用户：按顺序做）
 

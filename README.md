@@ -197,15 +197,17 @@ demo, not a feature. Leave it off unless you are recording.
 
 MIT — see [LICENSE](LICENSE).
 
-## 文档组织
+## Repository map (文档组织)
 
-- `AGENTS.md`：执行手册（三问三闸、角色、铁律、各角色清单）。任何 agent 进仓库先读它。`CLAUDE.md`、`CODEBUDDY.md` 只是指向它。
-- `docs/`：作战文档，按编号读：`00-BRIEF`（比赛要什么）→ `01-SPEC`（我们做什么，唯一事实来源）→ `02-TICKETS`（怎么拆）→ `03-PROCESS`（过程打卡与稽核）→ `04-PROOF`（证据）→ `05-SUBMISSION`（提交包）→ `06-RETRO`（回流）；`07-UI`（视觉方向与审美闸记录）贯穿全程。
-- `scripts/verify.sh`：确定性复验脚本，全部通过退出 0；CI 每次推送都跑它。
-- `scripts/measure-ui.mjs`：审美闸量测（字号级数、正文字号、裁切溢出、字体回落、合成粗体、卡内空白、调试信息等，阈值见 `docs/07-UI.md` §6），主控 D1 / D2 用它复量；先 `cd apps/web && npx vite build`。
-- `design/`：风格预设的设计变量（`tokens.css`）与字体。
-- `demo/`：演示情境（`scenario/` 是规范资料）与生成的收件匣。
-- `proof/`：证据文件（截图、日志）；界面截图在 `proof/ui/`，审美闸的缺陷局部放大在 `proof/review/`。`proof/video/` 是影片工作檔（錄製的幀、素材片、旁白、成片），不進 Git。
-- `video/`、`scripts/video/`、`docs/video/`：演示影片與封面的做法——錄製（`apps/web/e2e/record-demo.ts`）→ 素材片 → 旁白 → 剪輯表 → Remotion 出片；步驟與坑在 `design/sample-video/README.md`、`design/sample-cover/README.md`。
-- `design/sample-copy/`：評委版 README 與 Devpost 文案的做法；`docs/img/` 是 README 的截圖（取自錄影的真實運行）；`submission/` 放封面。
-- `.frac.md`：分形上下文；代码目录长出来以后，各目录自带 `.frac.md`。
+What judges read is in English: this README, the demo video and the Devpost page. The rest is the team's internal working material and is written in Chinese: `AGENTS.md`, `docs/`, the notes under `design/`, the `.frac.md` files, the comments in `.env.example`, parts of the code (comments, test names, internal scripts) and the check names that `scripts/verify.sh` prints.
+
+- `AGENTS.md`: the operating manual (three questions and three gates, roles, hard rules, a checklist for each role). Any agent entering the repository reads it first; `CLAUDE.md` and `CODEBUDDY.md` only point to it.
+- `docs/`: the project documents, read in numbered order: `00-BRIEF` (what the competition asks for) → `01-SPEC` (what we build; the single source of truth) → `02-TICKETS` (how the work is split) → `03-PROCESS` (process check-ins and audits) → `04-PROOF` (evidence) → `05-SUBMISSION` (the submission package) → `06-RETRO` (what flows back after the event); `07-UI` (visual direction and the aesthetic-gate record) runs through all of them.
+- `scripts/verify.sh`: the deterministic re-verification script; it exits 0 only when every check passes, and CI runs it on every push.
+- `scripts/measure-ui.mjs`: the aesthetic-gate measurements (number of type sizes, body text size, clipping and overflow, font fallback, synthetic bold, empty space inside cards, leftover debug output and more; thresholds in `docs/07-UI.md` §6). The lead agent re-measures with it at the aesthetic gate's D1 and D2 reviews; run `cd apps/web && npx vite build` first.
+- `design/`: the design tokens of the chosen style preset (`tokens.css`) and the fonts.
+- `demo/`: the demo scenario (`scenario/` is the canonical data) and the generated inbox.
+- `proof/`: evidence files (screenshots, logs); UI screenshots are in `proof/ui/`, and zoomed-in crops of aesthetic-gate defects in `proof/review/`. `proof/video/` holds the video working files (recorded frames, clips, voice-over, the final cut) and is not in Git.
+- `video/`, `scripts/video/`, `docs/video/`: how the demo video and the cover are made — recording (`apps/web/e2e/record-demo.ts`) → clips → voice-over → cut list → render with Remotion; the steps and pitfalls are in `design/sample-video/README.md` and `design/sample-cover/README.md`.
+- `design/sample-copy/`: how the judge-facing README and the Devpost copy are written; `docs/img/` holds the README screenshots (taken from the recorded real run); `submission/` holds the cover.
+- `.frac.md`: fractal context; as the code directories grow, each one carries its own `.frac.md`.
