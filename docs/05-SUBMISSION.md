@@ -262,7 +262,7 @@ Claude Code (Anthropic Claude Opus) and DeepSeek-based coding agents for buildin
 | 项 | 地址 / 文件 | 状态 |
 | --- | --- | --- |
 | 代码仓库（公开？） | https://github.com/hanshou101/proof-before-pay（公開快照，MIT） | **已建（2026-11-03，T12）**：public；GitHub API `license.spdx_id = MIT`，About 欄認得出 MIT；匿名 clone 後 `bash scripts/verify.sh --ci` 52 PASS / 10 SKIP / 0 FAIL（exit 0），README 的 14 個連結（影片、5 張圖、錨點、LICENSE）匿名都打得開。本倉庫 `hackathon-2026-paypal` 保持私有 |
-| 演示视频（GitHub Release） | https://github.com/hanshou101/proof-before-pay/releases/tag/v1.0 → `proof-before-pay-demo.mp4` | **已掛（2026-11-03，T12）**：Release `v1.0`，34,053,267 bytes；匿名 `curl -L` 200；sha256 `9de40718…2be7` 與私有 Release 的成片相同 |
+| 演示视频（GitHub Release） | https://github.com/hanshou101/proof-before-pay/releases/tag/v1.0 → `proof-before-pay-demo.mp4` | **已掛（2026-11-03，T12）**：Release `v1.0`，33,657,804 bytes；匿名 `curl -L` 200；sha256 `5f217c8d…298dcf` 與私有 Release 的成片相同（2026-11-03 主控修正後重出） |
 | 演示视频（YouTube） | YouTube 網址由用戶上傳後補 | 成片已出（AME-1152），用戶上傳 |
 | 在线演示地址 | 無（倉庫 Quick start） | — |
 | 封面 | `submission/cover-1500x1000.png` | 已出（AME-1152）：1500×1000，正好 3:2，244 KB |
@@ -277,7 +277,7 @@ Claude Code (Anthropic Claude Opus) and DeepSeek-based coding agents for buildin
 | 3 | 可運行的演示 | ✅ 是 | 公開倉庫 README `## Quick start`（`npm run setup` → `.env` → `npm run dev`）；§2 測試說明。T12 在匿名 clone 上照 README 跑完 `npm run setup`（exit 0，「✓ setup complete — 6 package(s) installed and built」） |
 | 4 | 工具說明 | ✅ 是 | §2「main technology requirement」（PayPal Payouts API + AI 各一段）與「Which AI tools」 |
 | 5 | 公開代碼倉庫 + LICENSE | ✅ 是 | https://github.com/hanshou101/proof-before-pay — public（匿名 `api.github.com` 讀到 `private: false`、`license.spdx_id: MIT`）；LICENSE 首行 `MIT License`；匿名 clone 可讀可跑 |
-| 6 | 演示視頻（< 3:00、YouTube、英文、無版權音樂） | 成片 ✅；YouTube ⏳ 待用戶 | `ffprobe`：`duration 135.100000`（2:15）、`h264 1920x1080`、`aac`；旁白 Kokoro-82M（Apache-2.0）合成，無音樂；英文旁白＋燒入字幕（Whisper 回聽 WER 0.3%）；`design/sample-video/README.md`。已掛公開 Release `v1.0`，匿名可下載 |
+| 6 | 演示視頻（< 3:00、YouTube、英文、無版權音樂） | 成片 ✅；YouTube ⏳ 待用戶 | `ffprobe`：`duration 135.700000`（2:15）、`h264 1920x1080`、`aac`；旁白 Kokoro-82M（Apache-2.0）合成，無音樂；英文旁白＋燒入字幕（Whisper 回聽 WER 0.3%）；`design/sample-video/README.md`。已掛公開 Release `v1.0`，匿名可下載 |
 | 7 | 測試權限 | ⏳ 主控 | §2 測試說明；四個 `<…>` 由主控提交當天另交用戶 |
 | 8 | 既有項目說明 | ✅ 不適用 | 新作品（2026-10-22 從模板新建） |
 | 9 | 語言 | ✅ 是 | 全英文（README、故事、影片旁白與字幕、Built with） |
