@@ -1,0 +1,21 @@
+{
+  "totals": {
+    "proven": {
+      "count": 5,
+      "amount": 700800
+    },
+    "awaitingProof": {
+      "count": 1,
+      "amount": 64000
+    },
+    "held": {
+      "count": 0,
+      "amount": 0
+    },
+    "stopped": {
+      "count": 2,
+      "amount": 355000
+    }
+  },
+  "steps": 4
+}

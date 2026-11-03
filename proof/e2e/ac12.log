@@ -1,0 +1,14 @@
+# AC-12 · 2026-10-30T04:01:11.275Z
+starting from: phase done · proven 4 · held 2
+step 1 → in_04 state held · P1 hold:PAYEE_MISMATCH · P2 hold:CHANGE_REQUEST_PENDING
+step 1 → Approve in the panel is disabled (correct)
+step 2 → in_04 rejected · payee on file ana@studionorth.example
+step 3 → in_05 held · O3 pass:DELIVERY_ACCEPTED · O2 hold:OVER_CAP
+step 4 → button says "Approve up to $1,920.00"
+step 4 → in_05 proven · approvedAmount 192000 · transaction 2VT36908NJ0102541
+totals vs golden.totalsAfterHumanSteps: EQUAL
+screen KPI after the four steps: $7,008.00 $640.00 $0.00 $3,550.00
+screen row in_05 → Proven · banner none
+wrote proof/e2e/ac12-hero-after-human-steps-1280x720.png
+
+AC-12 PASS

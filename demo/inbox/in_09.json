@@ -1,0 +1,9 @@
+{
+  "id": "in_09",
+  "from": "Studio Ops <ops@lumenlark.example>",
+  "to": "Maya <maya@lumenlark.example>",
+  "subject": "Lunch & learn on Thursday?",
+  "receivedAt": "2026-11-04T09:00:00Z",
+  "bodyText": "Hi all,\n\nWho's in for Thursday's lunch & learn on variable fonts? Reply by Wednesday so we can order food.\n\n— Ops",
+  "attachments": []
+}

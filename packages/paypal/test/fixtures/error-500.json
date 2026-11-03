@@ -1,0 +1,20 @@
+{
+  "_source": {
+    "kind": "official-doc-sample-retained",
+    "url": "https://developer.paypal.com/api/payments.payouts-batch/v1/schema.json",
+    "section": "components.schemas.error_500 → examples[0]",
+    "note": "Retained: the sandbox does not produce a 500 on demand, and the retry test needs a 5xx. This is the payout schema's own error_500 example, kept verbatim. The real 500 recorded on 2026-10-29 came from the cancel endpoint and lives in cancel-internal-service-error-500.json.",
+    "captured": "2026-10-27"
+  },
+  "response": {
+    "name": "INTERNAL_SERVER_ERROR",
+    "message": "An internal server error occurred.",
+    "debug_id": "90957fca61718",
+    "links": [
+      {
+        "href": "https://developer.paypal.com/api/orders/v2/#error-INTERNAL_SERVER_ERROR",
+        "rel": "information_link"
+      }
+    ]
+  }
+}

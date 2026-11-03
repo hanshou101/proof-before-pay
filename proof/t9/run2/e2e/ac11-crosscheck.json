@@ -1,0 +1,49 @@
+{
+  "checkedAt": "2026-11-01T06:00:21.656Z",
+  "server": "http://127.0.0.1:8790",
+  "singleBatchChecked": false,
+  "proven": 4,
+  "failures": 0,
+  "rows": [
+    {
+      "intentId": "int_in_01",
+      "itemId": "in_01",
+      "bundleTransactionId": "7XU32685UX6938432",
+      "paypalStatus": "SUCCESS",
+      "paypalTransactionId": "7XU32685UX6938432",
+      "ok": true,
+      "rebatchId": null,
+      "problem": null
+    },
+    {
+      "intentId": "int_in_02",
+      "itemId": "in_02",
+      "bundleTransactionId": "50793251YJ5280811",
+      "paypalStatus": "SUCCESS",
+      "paypalTransactionId": "50793251YJ5280811",
+      "ok": true,
+      "rebatchId": null,
+      "problem": null
+    },
+    {
+      "intentId": "int_in_06",
+      "itemId": "in_06",
+      "bundleTransactionId": "78J98055857547541",
+      "paypalStatus": "SUCCESS",
+      "paypalTransactionId": "78J98055857547541",
+      "ok": true,
+      "rebatchId": null,
+      "problem": null
+    },
+    {
+      "intentId": "int_in_08",
+      "itemId": "in_08",
+      "bundleTransactionId": "2A319991EN183142T",
+      "paypalStatus": "SUCCESS",
+      "paypalTransactionId": "2A319991EN183142T",
+      "ok": true,
+      "rebatchId": null,
+      "problem": null
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "about": "Narration for the demo video, one entry per section of docs/video/script.json. Say only what happened in the recorded run (AME-908; SPEC §3). Numbers come from docs/research/problem-stats.md.",
+  "voice": "af_heart",
+  "speed": 1.0,
+  "lines": [
+    {
+      "id": "n01-cold",
+      "text": "AI agents can pay invoices now. We gave one this week's invoices and real PayPal sandbox money. It caught the obvious fake. Then it paid one invoice twice, paid past a contract cap, and called a payout \"sent\" that never arrived."
+    },
+    {
+      "id": "n02-title",
+      "text": "This is Proof Before Pay. No proof, no payout."
+    },
+    {
+      "id": "n03-maya",
+      "text": "Meet Maya. She runs ops at a nine-person design studio, and pays about twenty freelancers through PayPal every Friday. This week, one email asks to change where Ana gets paid. In 2025, the FBI counted three billion dollars lost to emails like it."
+    },
+    {
+      "id": "n04-run",
+      "text": "Maya presses Run. The AI reads every invoice and drafts each payment, but it can't move money. Every payment needs four proofs. We owe it. It's really them. Policy allows it. And PayPal says it landed."
+    },
+    {
+      "id": "n05-kenji",
+      "text": "Kenji's invoice zero one four two was already paid. Paid once. Never twice."
+    },
+    {
+      "id": "n06-ana",
+      "text": "One character. Two thousand four hundred dollars. And the note telling our AI to skip verification? The gate doesn't take orders from email."
+    },
+    {
+      "id": "n07-leo",
+      "text": "Leo billed forty hours. His contract caps at thirty-two, and the work is still in review. Held."
+    },
+    {
+      "id": "n08-receipts",
+      "text": "Sent isn't paid. Only PayPal's own record counts. Jonas hasn't claimed his payout yet, so we don't call it paid."
+    },
+    {
+      "id": "n09-bundle",
+      "text": "Every payout carries its proof: what the AI read from the invoice, the contract it matched, the payee check, and PayPal's own ids, checked again live. And the ledger is hash-chained, so nobody can quietly edit history."
+    },
+    {
+      "id": "n10-human",
+      "text": "Holds go to a human. Maya calls the number on file, not the one in the email. Ana never changed her details, so it's rejected as fraud. Payee changes can't be clicked past. Only verified. Leo's work is accepted, and he's paid what the contract allows."
+    },
+    {
+      "id": "n11-arch",
+      "text": "The LLM proposes. The gate disposes. Idempotency keys come from the invoice itself."
+    },
+    {
+      "id": "n11b-fault",
+      "text": "So when PayPal's answer was lost and we retried, PayPal still paid once."
+    },
+    {
+      "id": "n12-end",
+      "text": "Proof Before Pay. No proof, no payout."
+    }
+  ]
+}

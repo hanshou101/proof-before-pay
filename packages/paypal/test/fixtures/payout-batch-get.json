@@ -1,0 +1,80 @@
+{
+  "_source": {
+    "kind": "sandbox-recording",
+    "url": "https://api-m.sandbox.paypal.com/v1/payments/payouts/2AKF25ZTS3B9S",
+    "section": "GET /v1/payments/payouts/{payout_batch_id} for the payout to an address with no sandbox account",
+    "note": "Recorded from the PayPal sandbox on 2026-10-29 (HTTP 200) by packages/paypal/scripts/capture-fixtures.ts. batch_status is SUCCESS while its only item is UNCLAIMED — the batch status is not proof. Client id, client secret, Authorization headers and access tokens are not in this file; ids are sandbox objects.",
+    "captured": "2026-10-29"
+  },
+  "response": {
+    "batch_header": {
+      "payout_batch_id": "2AKF25ZTS3B9S",
+      "batch_status": "SUCCESS",
+      "time_created": "2026-10-29T12:57:38Z",
+      "time_completed": "2026-10-29T12:58:02Z",
+      "sender_batch_header": {
+        "sender_batch_id": "pbp-673bc2201b98d4ce0088b3d79120",
+        "email_subject": "You have a payout from Lumen &amp; Lark Studio",
+        "email_message": "Lumen &amp; Lark · INV-CAPTURE-UNCLAIMED · no PO"
+      },
+      "funding_source": "BALANCE",
+      "amount": {
+        "currency": "USD",
+        "value": "1.00"
+      },
+      "fees": {
+        "currency": "USD",
+        "value": "0.25"
+      }
+    },
+    "items": [
+      {
+        "payout_item_id": "W5VDA3RB56CVG",
+        "transaction_id": "1UT898101D919252S",
+        "activity_id": "6JV8192525046893S",
+        "transaction_status": "UNCLAIMED",
+        "payout_item_fee": {
+          "currency": "USD",
+          "value": "0.25"
+        },
+        "payout_batch_id": "2AKF25ZTS3B9S",
+        "payout_item": {
+          "recipient_type": "EMAIL",
+          "amount": {
+            "currency": "USD",
+            "value": "1.00"
+          },
+          "note": "Lumen &amp; Lark · INV-CAPTURE-UNCLAIMED · no PO",
+          "receiver": "pbp-capture-unclaimed-aaf4e1e1@example.com",
+          "sender_item_id": "capture_unclaimed",
+          "recipient_wallet": "PAYPAL",
+          "purpose": "GOODS"
+        },
+        "time_processed": "2026-10-29T12:57:55Z",
+        "errors": {
+          "name": "RECEIVER_UNREGISTERED",
+          "message": "The recipient for this payout does not have an account. A link to sign up for an account was sent to the recipient. However, if the recipient does not claim this payout within 30 days, the funds will be returned to your account.",
+          "information_link": "https://developer.paypal.com/docs/api/payments.payouts-batch/#errors",
+          "details": [],
+          "links": []
+        },
+        "links": [
+          {
+            "href": "https://api.sandbox.paypal.com/v1/payments/payouts-item/W5VDA3RB56CVG",
+            "rel": "item",
+            "method": "GET",
+            "encType": "application/json"
+          }
+        ]
+      }
+    ],
+    "links": [
+      {
+        "href": "https://api.sandbox.paypal.com/v1/payments/payouts/2AKF25ZTS3B9S?page_size=1000&page=1",
+        "rel": "self",
+        "method": "GET",
+        "encType": "application/json"
+      }
+    ]
+  }
+}

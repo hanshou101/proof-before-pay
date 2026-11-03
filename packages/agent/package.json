@@ -1,0 +1,43 @@
+{
+  "name": "@pbp/agent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Proof Before Pay — the AI half: classify + extract, match an agreement without a PO, risk note, fact-checked explanations, run highlight, and the ungated comparison agent. The LLM proposes; it never moves money.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "pretest": "npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "eval": "tsx scripts/eval.ts",
+    "record": "tsx scripts/record-fixtures.ts"
+  },
+  "dependencies": {
+    "@pbp/core": "file:../core",
+    "openai": "6.49.0",
+    "unpdf": "1.7.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "20.19.20",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "vitest": "4.1.12"
+  }
+}

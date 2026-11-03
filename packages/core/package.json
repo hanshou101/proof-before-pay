@@ -1,0 +1,36 @@
+{
+  "name": "@pbp/core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Proof Before Pay \u2014 deterministic proof gate, intent state machine, idempotency keys, hash-chained ledger and rail adapter contract. Zero runtime dependencies.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "pretest": "npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "vectors": "npm run build && node scripts/build-vectors.mjs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "typescript": "^5.9.3",
+    "vitest": "4.1.12"
+  }
+}

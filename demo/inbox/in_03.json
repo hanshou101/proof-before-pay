@@ -1,0 +1,15 @@
+{
+  "id": "in_03",
+  "from": "Kenji Watanabe <kenji@kenjimotion.example>",
+  "to": "Maya <maya@lumenlark.example>",
+  "subject": "Friendly reminder — INV-0142",
+  "receivedAt": "2026-11-05T08:02:00Z",
+  "bodyText": "Hi Maya,\n\nJust a friendly reminder about INV-0142 for the storyboard animatic. I'm attaching it again in case it slipped through.\n\nHave a great weekend,\nKenji",
+  "attachments": [
+    {
+      "name": "kenji-INV-0142.pdf",
+      "path": "demo/inbox/files/kenji-INV-0142.pdf",
+      "sha256": "ef24e726683a60b66d34e7427b28f9cbdf92aa12c9130f63996a7015dd76d4ae"
+    }
+  ]
+}

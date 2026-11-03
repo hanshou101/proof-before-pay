@@ -1,0 +1,6 @@
+batch_status    SUCCESS | time_completed 2026-11-01T06:17:47Z
+item            5WS349UQ2C7UJ | status UNCLAIMED | errors {"name":"RECEIVER_UNREGISTERED","message":"The recipient for this payout does not have an account. A link to sign up for an account was sent to the recipient. However, if the recipient does not claim this payout within 30 days, the funds will be returned to your account.","information_link":"https://developer.paypal.com/docs/api/payments.payouts-batch/#errors","details":[],"links":[]}
+GET before      UNCLAIMED
+POST cancel     200 OK
+body            {"payout_item_id":"5WS349UQ2C7UJ","transaction_id":"1KE98629L2861621N","activity_id":"8Y3433749C9439210","transaction_status":"RETURNED","payout_item_fee":{"currency":"USD","value":"0.25"},"payout_batch_id":"Q8PKFA7B4WP7Q","sender_batch_id":"pbp-676164e85b8b159b2a23452eca41","payout_item":{"recipient_type":"EMAIL","amount":{"currency":"USD","value":"1.00"},"note":"Lumen &amp; Lark · INV-SPIKE-UNCLAIMED · no PO","receiver":"pbp-spike-unclaimed-mvxftlzvck1w@example.com","sender_item_id":"int_spike_c","recipient_wallet":"PAYPAL","purpose":"GOODS"},"time_processed":"2026-11-01T06:17:40Z","errors":
+GET after       RETURNED | transaction_id 1KE98629L2861621N

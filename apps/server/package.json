@@ -1,0 +1,44 @@
+{
+  "name": "@pbp/server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Proof Before Pay — HTTP API, SSE, ledger file, payout runner, human actions and demo:reset (SPEC §6.7).",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "reset": "node scripts/reset.mjs",
+    "start": "node dist/main.js",
+    "start:dev": "tsx src/main.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "2.1.5",
+    "@pbp/core": "file:../../packages/core",
+    "hono": "4.13.13",
+    "@pbp/agent": "file:../../packages/agent",
+    "@pbp/paypal": "file:../../packages/paypal"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "vitest": "4.1.12"
+  }
+}

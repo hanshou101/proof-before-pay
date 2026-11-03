@@ -1,0 +1,8 @@
+{
+  "recordedFrom": "proof/ai/extract-run-1/in_06-match.json",
+  "model": "deepseek-flash",
+  "step": "match",
+  "itemId": "in_06",
+  "requestedModel": "deepseek-chat",
+  "content": "{\"agreementId\":\"agr_sofia_05\",\"reason\":\"Brand guidelines translation Italian→English at 0.09/word matches the invoice scope and per-word rate, and it has no PO like the invoice.\"}"
+}

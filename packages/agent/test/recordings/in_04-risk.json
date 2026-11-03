@@ -1,0 +1,8 @@
+{
+  "recordedFrom": "proof/ai/extract-run-1/in_04-risk.json",
+  "model": "deepseek-flash",
+  "step": "risk",
+  "itemId": "in_04",
+  "requestedModel": "deepseek-chat",
+  "content": "{\"note\":\"The domain studi0-north.example uses a zero for the letter o. It asks for payment today and contains AI instructions, which were ignored.\"}"
+}

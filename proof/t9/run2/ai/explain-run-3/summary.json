@@ -1,0 +1,57 @@
+{
+  "run": 3,
+  "at": "2026-11-01T06:14:34.180Z",
+  "model": "deepseek-chat",
+  "allPass": true,
+  "fixture": true,
+  "fixtureNote": "original.transactionId is FIXTURE-TXN-0142 and original.paidAt is scenario.testClock until the sandbox seed exists (T8); both stand for data/history.json.",
+  "rows": [
+    {
+      "itemId": "in_03",
+      "decision": "blocked",
+      "failing": [
+        "O4:DUPLICATE"
+      ],
+      "text": "Invoice INV-0142 is blocked because it duplicates an earlier payment to the same vendor, which was paid on 6 November 2026 under PayPal transaction id FIXTURE-TXN-0142. It cannot be paid again.",
+      "source": "model",
+      "attempts": 1,
+      "sentences": 2,
+      "chars": 193,
+      "missingFacts": [],
+      "problems": [],
+      "pass": true
+    },
+    {
+      "itemId": "in_04",
+      "decision": "held",
+      "failing": [
+        "P1:PAYEE_MISMATCH",
+        "P2:CHANGE_REQUEST_PENDING"
+      ],
+      "text": "The payment is held because the invoice requests payment to billing@studi0-north.example, which is unverified, while the payee on file is ana@studionorth.example. A human must check the payee-change request received on 2026-11-04 before this can proceed.",
+      "source": "model",
+      "attempts": 1,
+      "sentences": 2,
+      "chars": 254,
+      "missingFacts": [],
+      "problems": [],
+      "pass": true
+    },
+    {
+      "itemId": "in_05",
+      "decision": "held",
+      "failing": [
+        "O2:OVER_CAP",
+        "O3:NOT_ACCEPTED"
+      ],
+      "text": "This payment is held because it bills 40 hours against a 32-hour cap, and Leo Martin's delivery is not accepted. A human needs to check the over-cap hours and confirm acceptance of the delivery before it can proceed.",
+      "source": "model",
+      "attempts": 1,
+      "sentences": 2,
+      "chars": 216,
+      "missingFacts": [],
+      "problems": [],
+      "pass": true
+    }
+  ]
+}

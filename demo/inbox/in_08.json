@@ -1,0 +1,15 @@
+{
+  "id": "in_08",
+  "from": "Tomás Herrera <tomas@herreraweb.example>",
+  "to": "Maya <maya@lumenlark.example>",
+  "subject": "INV-77 — landing page milestone 2",
+  "receivedAt": "2026-11-04T14:00:00Z",
+  "bodyText": "Hola Maya,\n\nInvoice INV-77 for milestone 2 of the landing page (responsive build) is attached.\n\nSaludos,\nTomás",
+  "attachments": [
+    {
+      "name": "HerreraWeb-INV-77.pdf",
+      "path": "demo/inbox/files/HerreraWeb-INV-77.pdf",
+      "sha256": "7fda5d7e2958f1ea4a8dc6d53f1cfa29c00f17ada750280da2da606a11a917e3"
+    }
+  ]
+}

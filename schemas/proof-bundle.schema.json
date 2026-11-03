@@ -1,0 +1,592 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/hanshou101/hackathon-2026-paypal/schemas/proof-bundle.schema.json",
+  "title": "Proof Before Pay — proof bundle",
+  "description": "Everything a judging panel (or a human reviewer) needs to re-check one payout: the original document, what the model read out of it, the contract it was checked against, the delivery that was accepted, the payee verification, the nine gate checks, and PayPal's own receipt — tied to the hash-chained ledger row that recorded it (SPEC §5 AC-15).",
+  "type": "object",
+  "required": [
+    "bundleVersion",
+    "intentId",
+    "itemId",
+    "generatedAt",
+    "source",
+    "extraction",
+    "claim",
+    "agreement",
+    "amountRule",
+    "delivery",
+    "payee",
+    "checks",
+    "decision",
+    "explanation",
+    "payment",
+    "ledger"
+  ],
+  "properties": {
+    "bundleVersion": {
+      "const": "proof-bundle/1"
+    },
+    "intentId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "itemId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generatedAt": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "fileName",
+        "sha256",
+        "from",
+        "subject",
+        "receivedAt",
+        "kind"
+      ],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "from": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "receivedAt": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "attachment",
+            "email_body",
+            "history"
+          ]
+        }
+      }
+    },
+    "extraction": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "required": [
+        "model",
+        "at"
+      ],
+      "properties": {
+        "model": {
+          "type": "string",
+          "minLength": 1
+        },
+        "at": {
+          "type": "string"
+        }
+      }
+    },
+    "claim": {
+      "$ref": "#/$defs/claim"
+    },
+    "agreement": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/agreement"
+        }
+      ]
+    },
+    "amountRule": {
+      "type": "string",
+      "minLength": 1
+    },
+    "delivery": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/delivery"
+        }
+      ]
+    },
+    "payee": {
+      "$ref": "#/$defs/payee"
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "items": {
+        "$ref": "#/$defs/check"
+      }
+    },
+    "decision": {
+      "enum": [
+        "approved",
+        "held",
+        "blocked"
+      ]
+    },
+    "explanation": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "required": [
+        "text",
+        "source"
+      ],
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        }
+      }
+    },
+    "payment": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/payment"
+        }
+      ]
+    },
+    "ledger": {
+      "$ref": "#/$defs/ledger"
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "claim": {
+      "type": "object",
+      "required": [
+        "itemId",
+        "vendorName",
+        "senderEmail",
+        "invoiceNumber",
+        "issueDate",
+        "currency",
+        "total",
+        "po",
+        "requestedPayee",
+        "lines",
+        "sourceSha256"
+      ],
+      "properties": {
+        "itemId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "vendorId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "vendorName": {
+          "type": "string"
+        },
+        "senderEmail": {
+          "type": "string"
+        },
+        "invoiceNumber": {
+          "type": "string",
+          "minLength": 1
+        },
+        "issueDate": {
+          "type": "string"
+        },
+        "currency": {
+          "const": "USD"
+        },
+        "total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "po": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "requestedPayee": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "description",
+              "quantity",
+              "unit",
+              "unitPrice",
+              "amount"
+            ],
+            "properties": {
+              "description": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "unit": {
+                "enum": [
+                  "item",
+                  "hour",
+                  "word"
+                ]
+              },
+              "unitPrice": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "amount": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          }
+        },
+        "sourceSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "extractedBy": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "required": [
+            "model",
+            "at"
+          ],
+          "properties": {
+            "model": {
+              "type": "string"
+            },
+            "at": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "agreement": {
+      "type": "object",
+      "required": [
+        "id",
+        "vendorId",
+        "po",
+        "scope",
+        "kind",
+        "currency"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "vendorId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "po": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "scope": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "fixed",
+            "hourly",
+            "per_word"
+          ]
+        },
+        "currency": {
+          "const": "USD"
+        },
+        "fee": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "rate": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "capUnits": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "deliveryIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "delivery": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "submittedAt",
+        "acceptedAt",
+        "acceptedBy",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string"
+        },
+        "submittedAt": {
+          "type": "string"
+        },
+        "acceptedAt": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "acceptedBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence": {
+          "type": "string"
+        }
+      }
+    },
+    "payee": {
+      "type": "object",
+      "required": [
+        "onFile",
+        "requested",
+        "verifiedAt",
+        "method",
+        "verifiedBy",
+        "humanVerification"
+      ],
+      "properties": {
+        "onFile": {
+          "type": "string"
+        },
+        "requested": {
+          "type": "string"
+        },
+        "verifiedAt": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "verifiedBy": {
+          "type": "string"
+        },
+        "humanVerification": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "required": [
+            "at",
+            "by",
+            "method",
+            "result"
+          ],
+          "properties": {
+            "at": {
+              "type": "string"
+            },
+            "by": {
+              "type": "string"
+            },
+            "method": {
+              "type": "string"
+            },
+            "result": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "check": {
+      "type": "object",
+      "required": [
+        "id",
+        "status",
+        "code",
+        "facts"
+      ],
+      "properties": {
+        "id": {
+          "enum": [
+            "O1",
+            "O2",
+            "O3",
+            "O4",
+            "P1",
+            "P2",
+            "L1",
+            "L2",
+            "L3"
+          ]
+        },
+        "status": {
+          "enum": [
+            "pass",
+            "hold",
+            "fail",
+            "na"
+          ]
+        },
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "facts": {
+          "type": "object"
+        }
+      }
+    },
+    "payment": {
+      "type": "object",
+      "required": [
+        "rail",
+        "amount",
+        "currency",
+        "receiver",
+        "senderBatchId",
+        "payoutBatchId",
+        "payoutItemId",
+        "transactionId",
+        "railStatus",
+        "fetchedAt",
+        "submittedAt",
+        "attempts"
+      ],
+      "properties": {
+        "rail": {
+          "const": "paypal"
+        },
+        "amount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "currency": {
+          "const": "USD"
+        },
+        "receiver": {
+          "type": "string"
+        },
+        "senderBatchId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "payoutBatchId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "payoutItemId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "transactionId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "railStatus": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fetchedAt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "submittedAt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attempts": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "ledger": {
+      "type": "object",
+      "required": [
+        "seq",
+        "hash",
+        "eventType",
+        "head",
+        "verified"
+      ],
+      "properties": {
+        "seq": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "hash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "eventType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "head": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "verified": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

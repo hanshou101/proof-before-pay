@@ -1,0 +1,187 @@
+
+=== 1. 原件：PDF 文字层 ===
+file            demo/inbox/files/kenji-INV-0153.pdf
+sha256          6203bde68e0df0deadca9d4daf3a3ed6ec26080a14dea397ed454359e0494a84
+bytes           15055
+pages           1
+--- text layer (verbatim) ---
+K E N J I M O T I O N
+Kenji Watanabe
+Osaka, Japan
+kenji@kenjimotion.example
+I N V O I C E
+INV-0153
+ISSUED 2026-11-04
+DUE 2026-11-18
+PO PO-1191
+B I L L T O
+Lumen & Lark Studio
+Attn: Maya
+maya@lumenlark.example
+Brooklyn, NY, USA
+D E S C R I P T I O N Q T Y U N I T U N I T P R I C E A M O U N T
+Logo animation — 3 variants 1 item 1,350.00 1,350.00
+S U B T O T A L 1,350.00
+T A X 0.00
+T O T A L USD 1,350.00
+P A Y M E N T
+PayPal: kenji@kenjimotion.example
+N O T E
+Payment due within 14 days.
+INV-0153 · 1 of 1 Kenji Motion · kenji@kenjimotion.example
+
+=== 2. 抽取（claim.extracted，真模型） ===
+ledger seq      16  at 2026-11-06T17:30:39.884Z
+extractedBy     {"model":"deepseek-flash","at":"2026-11-01T05:34:35.911Z"}
+{
+  "vendorId": "ven_kenji",
+  "vendorName": "Kenji Motion",
+  "senderEmail": "kenji@kenjimotion.example",
+  "invoiceNumber": "INV-0153",
+  "issueDate": "2026-11-04",
+  "currency": "USD",
+  "total": 135000,
+  "po": "PO-1191",
+  "requestedPayee": "kenji@kenjimotion.example",
+  "lines": [
+    {
+      "description": "Logo animation — 3 variants",
+      "quantity": 1,
+      "unit": "item",
+      "unitPrice": 135000,
+      "amount": 135000
+    }
+  ]
+}
+classified      invoice (deepseek-chat)
+
+=== 3. 提議（intent.proposed） ===
+intentId        int_in_02
+agreementId     agr_kenji_12 (matched by po)
+amount          135000 cents
+payee           kenji@kenjimotion.example
+fingerprint     eaa983767c8d2ee66b35de0546e291124a25aec9e51d57eddd5327b7cb6da5b3
+idempotencyKey  pbp-ef85fc7d7c3316c45b09104b75ad
+
+=== 4. 九项检查（intent.checked） ===
+O1  pass  VENDOR_MATCHED         {"vendorId":"ven_kenji","matchedBy":"sender"}
+O2  pass  AMOUNT_MATCHES         {"kind":"fixed","billed":135000,"expected":135000}
+O3  pass  DELIVERY_ACCEPTED      {"deliveryId":"del_kenji_12","acceptedAt":"2026-11-04T09:05:00Z","acceptedBy":"Maya","deliveryCount":1}
+O4  pass  NOT_DUPLICATE          {"fingerprint":"eaa983767c8d2ee66b35de0546e291124a25aec9e51d57eddd5327b7cb6da5b3"}
+P1  pass  PAYEE_VERIFIED         {"onFile":"kenji@kenjimotion.example","requested":"kenji@kenjimotion.example","verifiedAt":"2025-11-20T15:00:00Z","method":"video_call"}
+P2  pass  NO_CHANGE_REQUEST      {"vendorId":"ven_kenji","windowDays":90}
+L1  pass  WITHIN_LIMIT           {"amount":135000,"limit":250000}
+L2  pass  WITHIN_DAILY_LIMIT     {"todayTotal":235000,"amount":135000,"limit":1000000}
+L3  pass  VENDOR_ESTABLISHED     {"priorPayments":14,"amount":135000,"limit":100000}
+decision        approved
+
+=== 5. 送出（payment.submitted） ===
+seq  20  at 2026-11-06T17:30:39.886Z  attempt 1  senderBatchId pbp-ef85fc7d7c3316c45b09104b75ad  payoutBatchId null
+seq  21  at 2026-11-06T17:30:41.109Z  attempt 1  senderBatchId pbp-ef85fc7d7c3316c45b09104b75ad  payoutBatchId YL939MKF5XXMY
+
+=== 6. PayPal GET（独立脚本，直打沙箱） ===
+GET /v1/payments/payouts-item/CVQA23UYHYC5C → HTTP 200
+{
+  "transaction_status": "SUCCESS",
+  "transaction_id": "0D673575MN058301Y",
+  "payout_item_id": "CVQA23UYHYC5C",
+  "payout_batch_id": "YL939MKF5XXMY",
+  "amount": {
+    "currency": "USD",
+    "value": "1350.00"
+  },
+  "receiver": "kenji11111@personal.example.com",
+  "time_processed": "2026-11-01T05:34:52Z"
+}
+GET /v1/payments/payouts/YL939MKF5XXMY → HTTP 200
+{
+  "batch_status": "SUCCESS",
+  "amount": {
+    "currency": "USD",
+    "value": "1350.00"
+  },
+  "items": [
+    {
+      "payout_item_id": "CVQA23UYHYC5C",
+      "transaction_status": "SUCCESS",
+      "transaction_id": "0D673575MN058301Y"
+    }
+  ]
+}
+
+=== 7. 證明包（GET /api/intents/:id/bundle） ===
+HTTP 200
+{
+  "source": {
+    "fileName": "kenji-INV-0153.pdf",
+    "sha256": "6203bde68e0df0deadca9d4daf3a3ed6ec26080a14dea397ed454359e0494a84",
+    "from": "Kenji Watanabe <kenji@kenjimotion.example>",
+    "subject": "INV-0153 — logo animation",
+    "receivedAt": "2026-11-04T10:15:00Z",
+    "kind": "attachment"
+  },
+  "extraction": {
+    "model": "deepseek-flash",
+    "at": "2026-11-06T17:30:39.884Z"
+  },
+  "amountRule": "fixed fee: the invoice total must equal $1,350.00.",
+  "delivery": {
+    "id": "del_kenji_12",
+    "title": "Logo animation — 3 variants",
+    "submittedAt": "2026-11-03T08:30:00Z",
+    "acceptedAt": "2026-11-04T09:05:00Z",
+    "acceptedBy": "Maya",
+    "evidence": "Project board · task LL-219 · approved"
+  },
+  "payee": {
+    "onFile": "kenji@kenjimotion.example",
+    "requested": "kenji@kenjimotion.example",
+    "verifiedAt": "2025-11-20T15:00:00Z",
+    "method": "video_call",
+    "verifiedBy": "Maya",
+    "onFileNow": "kenji@kenjimotion.example",
+    "humanVerification": null
+  },
+  "checks": [
+    "O1:pass:VENDOR_MATCHED",
+    "O2:pass:AMOUNT_MATCHES",
+    "O3:pass:DELIVERY_ACCEPTED",
+    "O4:pass:NOT_DUPLICATE",
+    "P1:pass:PAYEE_VERIFIED",
+    "P2:pass:NO_CHANGE_REQUEST",
+    "L1:pass:WITHIN_LIMIT",
+    "L2:pass:WITHIN_DAILY_LIMIT",
+    "L3:pass:VENDOR_ESTABLISHED"
+  ],
+  "payment": {
+    "rail": "paypal",
+    "amount": 135000,
+    "currency": "USD",
+    "receiver": "kenji@kenjimotion.example",
+    "receiverRequested": "kenji@kenjimotion.example",
+    "receiverSent": "kenji11111@personal.example.com",
+    "senderBatchId": "pbp-ef85fc7d7c3316c45b09104b75ad",
+    "payoutBatchId": "YL939MKF5XXMY",
+    "payoutItemId": "CVQA23UYHYC5C",
+    "transactionId": "0D673575MN058301Y",
+    "railStatus": "SUCCESS",
+    "fetchedAt": "2026-11-06T17:30:57.693Z",
+    "submittedAt": "2026-11-06T17:30:41.109Z",
+    "attempts": 1
+  },
+  "ledger": {
+    "seq": 23,
+    "hash": "76a2113b4c95f84430f16fcb1e868bd88830b278ca62496987d32cd1913c60fa",
+    "eventType": "receipt.updated",
+    "head": 90,
+    "verified": true
+  }
+}
+
+=== 8. 帳本行（receipt.updated → proven） ===
+seq 23  at 2026-11-06T17:30:57.693Z
+prevHash 0e6f602db7f0097791fa3cbd9e50ef671d42464ec7a5affc966d932b83cfd0f7
+hash     76a2113b4c95f84430f16fcb1e868bd88830b278ca62496987d32cd1913c60fa
+data     {"intentId":"int_in_02","railStatus":"SUCCESS","proof":"proven","payoutItemId":"CVQA23UYHYC5C","transactionId":"0D673575MN058301Y","source":"rail_get","fetchedAt":"2026-11-06T17:30:57.693Z"}
+
+ledger head: seq 90 · hash ca52459dba3de3dfee9ecd44c5d68a25610e233c330e5af1ec2715c6a1118226

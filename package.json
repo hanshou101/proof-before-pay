@@ -1,0 +1,16 @@
+{
+  "name": "proof-before-pay",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Proof Before Pay — AI payables agent for small studios. See docs/01-SPEC.md.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "dev": "node scripts/dev.mjs",
+    "verify": "bash scripts/verify.sh",
+    "demo:reset": "node apps/server/scripts/reset.mjs"
+  }
+}

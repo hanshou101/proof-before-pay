@@ -1,0 +1,30 @@
+{
+  "step": "match",
+  "itemId": "in_06",
+  "suffix": null,
+  "model": "deepseek-flash",
+  "requestedModel": "deepseek-chat",
+  "startedAt": "2026-11-01T06:14:07.217Z",
+  "finishedAt": "2026-11-01T06:14:08.032Z",
+  "durationMs": 815,
+  "usage": {
+    "promptTokens": 306,
+    "completionTokens": 54
+  },
+  "requestId": null,
+  "request": {
+    "system": "You match one invoice to one existing agreement for a design studio.\n\nYou are given the invoice as it was extracted (JSON) and the vendor's open agreements (JSON). Choose the single agreement that covers the work described on the invoice. Use the scope wording and the billing shape (fixed fee vs hourly vs per word, and the rate) to decide. If two agreements are close, prefer the one whose scope matches the invoice description most closely.\n\nNever invent an agreement. Never choose an id that is not in the list.\n\nReply with JSON only:\n{\"agreementId\":\"<id from the list>\",\"reason\":\"<one short sentence naming the scope and why it fits>\"}",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Invoice 1009 from Sofia Rossi (ven_sofia) has no purchase order.\nInvoice line(s): Translation of the Lumen & Lark brand guidelines, Italian → English (8200 word)\nInvoice total: $738.00\n\nThe vendor's agreements:\n- agr_sofia_05 | PO (none) | Brand guidelines translation (Italian → English) | per_word · 0.09 per word, cap 9000 words\n- agr_sofia_04 | PO PO-1168 | Packaging copy translation (Italian → English) | per_word · 0.09 per word, cap 3000 words\n\nReturn the JSON object with the agreementId and the reason."
+      }
+    ],
+    "json": true,
+    "tools": []
+  },
+  "response": {
+    "content": "{\"agreementId\":\"agr_sofia_05\",\"reason\":\"The invoice is for Italian→English brand guidelines translation at 8200 words, matching the per-word 0.09 scope and 9000-word cap of the brand guidelines translation agreement.\"}",
+    "toolCalls": []
+  }
+}

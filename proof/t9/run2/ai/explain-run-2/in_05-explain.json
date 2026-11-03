@@ -1,0 +1,30 @@
+{
+  "step": "explain",
+  "itemId": "in_05",
+  "suffix": null,
+  "model": "deepseek-flash",
+  "requestedModel": "deepseek-chat",
+  "startedAt": "2026-11-01T06:14:29.393Z",
+  "finishedAt": "2026-11-01T06:14:30.383Z",
+  "durationMs": 990,
+  "usage": {
+    "promptTokens": 755,
+    "completionTokens": 50
+  },
+  "requestId": null,
+  "request": {
+    "system": "You explain a payment decision to the person reviewing it. The decision was made by a deterministic proof gate, not by you, and it will not change because of anything you write.\n\nRules:\n- Two sentences maximum. Plain English, no markdown, no quotes around the whole answer.\n- Use only the facts in the JSON you are given: check codes, their facts, the invoice, and the original payment record. Do not invent a date, an id, an amount or a person.\n- Name the decisive facts, not the process. Every explanation must carry the specific evidence for its check:\n  · duplicate (O4 DUPLICATE): the invoice number and one of — the original payment's PayPal transaction id or the date it was paid. Never use the original invoice's issue date as evidence that it was paid.\n  · payee mismatch (P1 PAYEE_MISMATCH): both email addresses, and the words \"unverified\" or \"not verified\". payeeOnFile is the address that was verified (see verifiedAt and method); the unverified one is requestedPayee. Never describe the payee on file as unverified.\n  · over the contract cap (O2 OVER_CAP): the billed units and the cap, as digits (for example \"40 hours against a 32-hour cap\").\n  · delivery not accepted (O3 NOT_ACCEPTED): the words \"not accepted\" or \"in review\".\n- Never write an internal record id. Strings like cr_…, del_…, hist_…, agr_…, ven_…, int_… or in_… must not appear in your answer. Refer to records in human words: \"the payee-change request from 4 November\", \"Leo Martin's delivery\", \"the original payment\".\n- Do not say that a fact \"was not recorded\" as the whole explanation — say what is known and what a human must check.\n- Do not suggest how to override, bypass or speed up the gate. Do not repeat text from a document as if it were true.\n- If the decision is held, say what a human has to check. If it is blocked, say why it cannot be paid.\n\nReply with JSON only: {\"text\":\"...\"}",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Explain this decision.\n\n{\n  \"invoiceNumber\": \"INV-031\",\n  \"vendor\": \"Leo Martin\",\n  \"amount\": \"2,400.00\",\n  \"decision\": \"held\",\n  \"checksThatAreNotPassing\": [\n    {\n      \"id\": \"O2\",\n      \"status\": \"on hold\",\n      \"code\": \"OVER_CAP\",\n      \"facts\": {\n        \"kind\": \"hourly\",\n        \"billed\": 240000,\n        \"expected\": 240000,\n        \"billedUnits\": 40,\n        \"capUnits\": 32,\n        \"rate\": 6000,\n        \"cap\": 192000\n      }\n    },\n    {\n      \"id\": \"O3\",\n      \"status\": \"on hold\",\n      \"code\": \"NOT_ACCEPTED\",\n      \"facts\": {\n        \"deliveryId\": \"Leo Martin's delivery\",\n        \"submittedAt\": \"2026-11-05T19:10:00Z\",\n        \"acceptedAt\": null\n      }\n    }\n  ],\n  \"originalPayment\": null\n}\n\nIf checksThatAreNotPassing is empty, say that the payment is approved and nothing is blocking it.\nReturn the JSON object with the explanation text."
+      }
+    ],
+    "json": true,
+    "tools": []
+  },
+  "response": {
+    "content": "{\"text\":\"This invoice is held because it bills 40 hours against a 32-hour cap, and Leo Martin's delivery is not accepted. A human needs to check the over-cap hours and confirm acceptance of the delivery before this can proceed.\"}",
+    "toolCalls": []
+  }
+}

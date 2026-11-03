@@ -1,0 +1,77 @@
+PASS  文档存在 docs/00-BRIEF.md
+PASS  文档存在 docs/01-SPEC.md
+PASS  文档存在 docs/02-TICKETS.md
+PASS  文档存在 docs/03-PROCESS.md
+PASS  文档存在 docs/04-PROOF.md
+PASS  文档存在 docs/05-SUBMISSION.md
+PASS  文档存在 docs/07-UI.md
+PASS  没有提交 .env
+PASS  设计变量对比度达标（design/tokens.css）
+PASS  规范资料是合法 JSON（demo/scenario）
+PASS  core 單元測試（AC-1～AC-5、AC-9）
+PASS  core 型別檢查（src + test）
+PASS  core 建置（dist + .d.ts）
+PASS  core dependencies 為空
+PASS  黃金向量存在且可解析
+PASS  T1 BRIEF §6 五行、5 張 1280x800 截圖、問題數據 (a)–(e) 有引文與 URL、沙箱三問有答案
+PASS  T3 生成器依賴可用（缺 node_modules 就 npm ci）
+PASS  T3 生成器確定性：連跑兩次全部 sha256 相同、且與倉庫一致
+PASS  T3 PDF 文字層：發票號、總額、PO、PayPal 收款電郵齊全；字體內嵌
+PASS  T3 in_03 附件與 demo/history 原件位元組相同
+PASS  T3 9 封郵件 JSON 與 scenario 一致、bodyText 逐字相同
+PASS  T3 proof/dataset 7 張 PNG 寬 1240px
+PASS  paypal 單元測試（請求組裝・狀態對照全表・token 快取・同鍵重試・缺憑證不發請求）
+PASS  paypal 型別檢查（src + test + scripts/spike.ts）
+PASS  paypal 建置（dist + .d.ts）
+PASS  paypal 依賴只有 @pbp/core
+PASS  paypal 沙箱快速實測（(b) 一筆 SUCCESS ＋ (e) 重複鍵不重付）
+PASS  agent 單元測試（AC-9c/9d、AC-10 邏輯、風險說明 140 字元）
+PASS  agent 型別檢查（src + test）
+PASS  agent 建置（dist + .d.ts）
+PASS  agent 依賴只有 core / openai / unpdf / zod
+PASS  agent 真模型抽取評測（9 封逐欄對 golden）
+PASS  web: typecheck (tsc --noEmit)
+PASS  web: unit tests (vitest, projection)
+PASS  web: build (vite)
+PASS  web: no bare colour / px font-size values
+PASS  server 前置：core 已建置（file: 依賴要 dist/）
+PASS  server 整合測試（AC-12・AC-13・AC-15・AC-17 的 server 部分）
+PASS  server 型別檢查（src + test）
+PASS  server 建置（dist + .d.ts）
+PASS  proof-bundle schema 是 2020-12 且列齊 AC-15 的欄位
+PASS  根 demo:reset 腳本存在（端到端接真軌道在 T8）
+PASS  server 有 src/main.ts（組裝入口）
+PASS  server 依賴含 @pbp/paypal 與 @pbp/agent（file:）
+PASS  web 依賴含 @pbp/core（型別從 core 匯入）
+PASS  根 npm run dev 腳本存在
+PASS  .env.example 只寫鍵名（SPEC §6.9 的 11 個鍵都在、沒有值）
+PASS  e2e: web typecheck（tsc --noEmit，含 e2e 腳本）
+PASS  e2e: web unit（投影 reduce）
+PASS  e2e: web build（vite）
+PASS  AC-11 端到端：demo:reset → Run → golden 對帳 → crosscheck
+PASS  AC-12 人工四步（接在 AC-11 的帳本上）
+PASS  AC-13 (a) 故障注入：掉回應之後同鍵重試仍只付一次
+PASS  AC-13 (b) kill -9：重啟後續完、不重付
+FAIL  AC-14 對照模式（無閘的 agent，預設關閉）
+        tomas@herreraweb.example           1800.00 USD  —
+        leo@polyform3d.example             2400.00 USD  —
+        tomas@herreraweb.example           1800.00 USD  —
+      unexpected payouts: none
+      not sent by the model (listed, not filled in): in_04 billing@studi0-north.example 240000
+      
+      golden → actual, per payout:
+        in_01  golden SUCCESS    actual SUCCESS
+        in_02  golden SUCCESS    actual FAILED
+        in_03  golden SUCCESS    actual FAILED
+        in_04  golden UNCLAIMED  actual (not sent)
+        in_05  golden SUCCESS    actual PENDING
+        in_06  golden SUCCESS    actual FAILED
+        in_07  golden UNCLAIMED  actual FAILED
+        in_08  golden SUCCESS    actual PENDING
+      
+      AC-14 FAIL — payout outcomes disagree with golden: in_02 golden SUCCESS actual FAILED; in_03 golden SUCCESS actual FAILED; in_05 golden SUCCESS actual PENDING; in_06 golden SUCCESS actual FAILED; in_07 golden UNCLAIMED actual FAILED; in_08 golden SUCCESS actual PENDING
+      server log:
+      [server] Proof Before Pay on http://127.0.0.1:8790
+      [server] web: apps/web/dist
+PASS  web: screenshots + no-overflow assertions（來自真實運行）
+HAS FAIL（56 条执行，0 条跳过）

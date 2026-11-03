@@ -1,0 +1,15 @@
+{
+  "id": "in_01",
+  "from": "Priya Nair <priya@nairwords.example>",
+  "to": "Maya <maya@lumenlark.example>",
+  "subject": "Invoice INV-2026-118 — website copy",
+  "receivedAt": "2026-11-03T12:04:00Z",
+  "bodyText": "Hi Maya,\n\nAttached is my invoice for the website copy — all 12 pages, v3 as approved on Monday.\n\nPayment via PayPal as usual, please.\n\nBest,\nPriya",
+  "attachments": [
+    {
+      "name": "Nair-Words-INV-2026-118.pdf",
+      "path": "demo/inbox/files/Nair-Words-INV-2026-118.pdf",
+      "sha256": "c292e9843b51620f9ecdc95f9d145e48636a1e902d9b7379c330ef1806889ad1"
+    }
+  ]
+}

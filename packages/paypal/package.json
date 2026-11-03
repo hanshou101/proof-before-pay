@@ -1,0 +1,40 @@
+{
+  "name": "@pbp/paypal",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Proof Before Pay — the PayPal Payouts rail: OAuth2 client-credentials with a 60-second refresh margin, one batch and one item per intent keyed by the invoice idempotency key, receipts read only through GET, cancel for unclaimed items, fault injection and receiver mapping.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "pretest": "npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "spike": "tsx scripts/spike.ts",
+    "capture-fixtures": "tsx scripts/capture-fixtures.ts"
+  },
+  "dependencies": {
+    "@pbp/core": "file:../core"
+  },
+  "devDependencies": {
+    "@types/node": "20.19.20",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "vitest": "4.1.12"
+  }
+}

@@ -1,0 +1,57 @@
+SKIP  文档存在 docs/00-BRIEF.md（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  文档存在 docs/01-SPEC.md（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  文档存在 docs/02-TICKETS.md（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  文档存在 docs/03-PROCESS.md（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  文档存在 docs/04-PROOF.md（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  文档存在 docs/05-SUBMISSION.md（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  文档存在 docs/07-UI.md（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  没有提交 .env（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  设计变量对比度达标（design/tokens.css）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  规范资料是合法 JSON（demo/scenario）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  core 單元測試（AC-1～AC-5、AC-9）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  core 型別檢查（src + test）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  core 建置（dist + .d.ts）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  core dependencies 為空（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  黃金向量存在且可解析（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  T1 BRIEF §6 五行、5 張 1280x800 截圖、問題數據 (a)–(e) 有引文與 URL、沙箱三問有答案（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  T3 生成器依賴可用（缺 node_modules 就 npm ci）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  T3 生成器確定性：連跑兩次全部 sha256 相同、且與倉庫一致（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  T3 PDF 文字層：發票號、總額、PO、PayPal 收款電郵齊全；字體內嵌（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  T3 in_03 附件與 demo/history 原件位元組相同（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  T3 9 封郵件 JSON 與 scenario 一致、bodyText 逐字相同（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  T3 proof/dataset 7 張 PNG 寬 1240px（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  paypal 單元測試（請求組裝・狀態對照全表・token 快取・同鍵重試・缺憑證不發請求）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  paypal 型別檢查（src + test + scripts/spike.ts）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  paypal 建置（dist + .d.ts）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  paypal 依賴只有 @pbp/core（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  paypal 沙箱快速實測（(b) 一筆 SUCCESS ＋ (e) 重複鍵不重付）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  agent 單元測試（AC-9c/9d、AC-10 邏輯、風險說明 140 字元）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  agent 型別檢查（src + test）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  agent 建置（dist + .d.ts）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  agent 依賴只有 core / openai / unpdf / zod（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  agent 真模型抽取評測（9 封逐欄對 golden）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  web: typecheck (tsc --noEmit)（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  web: unit tests (vitest, projection)（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  web: build (vite)（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  web: no bare colour / px font-size values（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  server 前置：core 已建置（file: 依賴要 dist/）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  server 整合測試（AC-12・AC-13・AC-15・AC-17 的 server 部分）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  server 型別檢查（src + test）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  server 建置（dist + .d.ts）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  proof-bundle schema 是 2020-12 且列齊 AC-15 的欄位（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  根 demo:reset 腳本存在（端到端接真軌道在 T8）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  server 有 src/main.ts（組裝入口）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  server 依賴含 @pbp/paypal 與 @pbp/agent（file:）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  web 依賴含 @pbp/core（型別從 core 匯入）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  根 npm run dev 腳本存在（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  .env.example 只寫鍵名（SPEC §6.9 的 11 個鍵都在、沒有值）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  e2e: web typecheck（tsc --noEmit，含 e2e 腳本）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  e2e: web unit（投影 reduce）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  e2e: web build（vite）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  AC-11 端到端：demo:reset → Run → golden 對帳 → crosscheck（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  AC-12 人工四步（接在 AC-11 的帳本上）（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  AC-13 (a) 故障注入：掉回應之後同鍵重試仍只付一次（PBP_VERIFY_ONLY/SKIP 未选中）
+SKIP  AC-13 (b) kill -9：重啟後續完、不重付（PBP_VERIFY_ONLY/SKIP 未选中）
+PASS  AC-14 對照模式（無閘的 agent，預設關閉）
+PASS  web: screenshots + no-overflow assertions（來自真實運行）
+PASS（2 条通过，54 条被过滤跳过——这不是完整复验）

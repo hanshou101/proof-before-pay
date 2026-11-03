@@ -1,0 +1,79 @@
+#  1 2026-11-06T17:30:00.002Z ledger.opened          
+#  2 2026-11-06T17:30:19.386Z history.seeded         intentId=hist_kenji_0142
+#  3 2026-11-06T17:30:19.963Z run.started            
+#  4 2026-11-06T17:30:19.964Z item.read              itemId=in_01
+#  5 2026-11-06T17:30:21.750Z item.classified        itemId=in_01 classification=invoice
+#  6 2026-11-06T17:30:21.750Z claim.extracted        itemId=in_01
+#  7 2026-11-06T17:30:21.750Z risk.flagged           itemId=in_01
+#  8 2026-11-06T17:30:21.750Z intent.proposed        itemId=in_01 intentId=int_in_01
+#  9 2026-11-06T17:30:21.751Z intent.checked         intentId=int_in_01 decision=approved
+# 10 2026-11-06T17:30:21.751Z payment.submitted      intentId=int_in_01
+# 11 2026-11-06T17:30:23.072Z payment.submitted      intentId=int_in_01
+# 12 2026-11-06T17:30:24.084Z receipt.updated        intentId=int_in_01 railStatus=PENDING proof=pending
+# 13 2026-11-06T17:30:40.055Z receipt.updated        intentId=int_in_01 railStatus=SUCCESS proof=proven transactionId=3XS648048C658854Y
+# 14 2026-11-06T17:30:40.057Z item.read              itemId=in_02
+# 15 2026-11-06T17:30:41.583Z item.classified        itemId=in_02 classification=invoice
+# 16 2026-11-06T17:30:41.583Z claim.extracted        itemId=in_02
+# 17 2026-11-06T17:30:41.583Z risk.flagged           itemId=in_02
+# 18 2026-11-06T17:30:41.583Z intent.proposed        itemId=in_02 intentId=int_in_02
+# 19 2026-11-06T17:30:41.583Z intent.checked         intentId=int_in_02 decision=approved
+# 20 2026-11-06T17:30:41.583Z payment.submitted      intentId=int_in_02
+# 21 2026-11-06T17:30:42.479Z payment.submitted      intentId=int_in_02
+# 22 2026-11-06T17:30:43.531Z receipt.updated        intentId=int_in_02 railStatus=PENDING proof=pending
+# 23 2026-11-06T17:30:59.154Z receipt.updated        intentId=int_in_02 railStatus=SUCCESS proof=proven transactionId=92655046AK0198631
+# 24 2026-11-06T17:30:59.155Z item.read              itemId=in_03
+# 25 2026-11-06T17:31:00.417Z item.classified        itemId=in_03 classification=invoice
+# 26 2026-11-06T17:31:00.418Z claim.extracted        itemId=in_03
+# 27 2026-11-06T17:31:00.418Z risk.flagged           itemId=in_03
+# 28 2026-11-06T17:31:00.418Z intent.proposed        itemId=in_03 intentId=int_in_03
+# 29 2026-11-06T17:31:00.418Z intent.checked         intentId=int_in_03 decision=blocked
+# 30 2026-11-06T17:31:01.457Z intent.explained       intentId=int_in_03 text=Invoice INV-0142 is blocked because it duplicates an earlier payment to the same vendor, which was paid under PayPal transaction id 6B7202128B946051K on 6 November 2026. A human must check whether this invoice is a second claim on that same payment before it can be paid.
+# 31 2026-11-06T17:31:01.458Z item.read              itemId=in_04
+# 32 2026-11-06T17:31:04.483Z item.classified        itemId=in_04 classification=invoice+payee_change_request
+# 33 2026-11-06T17:31:04.483Z claim.extracted        itemId=in_04
+# 34 2026-11-06T17:31:04.483Z change_request.recorded 
+# 35 2026-11-06T17:31:04.483Z risk.flagged           itemId=in_04
+# 36 2026-11-06T17:31:04.484Z intent.proposed        itemId=in_04 intentId=int_in_04
+# 37 2026-11-06T17:31:04.484Z intent.checked         intentId=int_in_04 decision=held
+# 38 2026-11-06T17:31:05.363Z intent.explained       intentId=int_in_04 text=The payment is held because the requested payee billing@studi0-north.example is unverified, while the payee on file is ana@studionorth.example, and a payee-change request received on 4 November is still pending. A human must verify the requested payee before this invoice can be paid.
+# 39 2026-11-06T17:31:05.363Z item.read              itemId=in_05
+# 40 2026-11-06T17:31:06.956Z item.classified        itemId=in_05 classification=invoice
+# 41 2026-11-06T17:31:06.956Z claim.extracted        itemId=in_05
+# 42 2026-11-06T17:31:06.956Z risk.flagged           itemId=in_05
+# 43 2026-11-06T17:31:06.956Z intent.proposed        itemId=in_05 intentId=int_in_05
+# 44 2026-11-06T17:31:06.957Z intent.checked         intentId=int_in_05 decision=held
+# 45 2026-11-06T17:31:08.220Z intent.explained       intentId=int_in_05 text=This payment is held because Polyform 3D billed 40 hours against a 32-hour cap, and the delivery submitted on 5 November is not accepted. A human must check the hours billed against the contract cap and confirm whether the delivery has been accepted.
+# 46 2026-11-06T17:31:08.220Z item.read              itemId=in_06
+# 47 2026-11-06T17:31:10.986Z item.classified        itemId=in_06 classification=invoice
+# 48 2026-11-06T17:31:10.986Z claim.extracted        itemId=in_06
+# 49 2026-11-06T17:31:10.986Z risk.flagged           itemId=in_06
+# 50 2026-11-06T17:31:10.986Z intent.proposed        itemId=in_06 intentId=int_in_06
+# 51 2026-11-06T17:31:10.986Z intent.checked         intentId=int_in_06 decision=approved
+# 52 2026-11-06T17:31:10.986Z payment.submitted      intentId=int_in_06
+# 53 2026-11-06T17:31:12.092Z payment.submitted      intentId=int_in_06
+# 54 2026-11-06T17:31:13.344Z receipt.updated        intentId=int_in_06 railStatus=PENDING proof=pending
+# 55 2026-11-06T17:31:29.655Z receipt.updated        intentId=int_in_06 railStatus=SUCCESS proof=proven transactionId=2EA947905E447400T
+# 56 2026-11-06T17:31:29.656Z item.read              itemId=in_07
+# 57 2026-11-06T17:31:31.363Z item.classified        itemId=in_07 classification=invoice
+# 58 2026-11-06T17:31:31.363Z claim.extracted        itemId=in_07
+# 59 2026-11-06T17:31:31.364Z risk.flagged           itemId=in_07
+# 60 2026-11-06T17:31:31.364Z intent.proposed        itemId=in_07 intentId=int_in_07
+# 61 2026-11-06T17:31:31.364Z intent.checked         intentId=int_in_07 decision=approved
+# 62 2026-11-06T17:31:31.364Z payment.submitted      intentId=int_in_07
+# 63 2026-11-06T17:31:32.890Z payment.submitted      intentId=int_in_07
+# 64 2026-11-06T17:31:34.025Z receipt.updated        intentId=int_in_07 railStatus=PENDING proof=pending
+# 65 2026-11-06T17:33:33.628Z item.read              itemId=in_08
+# 66 2026-11-06T17:33:34.764Z item.classified        itemId=in_08 classification=invoice
+# 67 2026-11-06T17:33:34.764Z claim.extracted        itemId=in_08
+# 68 2026-11-06T17:33:34.764Z risk.flagged           itemId=in_08
+# 69 2026-11-06T17:33:34.764Z intent.proposed        itemId=in_08 intentId=int_in_08
+# 70 2026-11-06T17:33:34.764Z intent.checked         intentId=int_in_08 decision=approved
+# 71 2026-11-06T17:33:34.764Z payment.submitted      intentId=int_in_08
+# 72 2026-11-06T17:33:35.471Z payment.submitted      intentId=int_in_08
+# 73 2026-11-06T17:33:36.376Z receipt.updated        intentId=int_in_08 railStatus=PENDING proof=pending
+# 74 2026-11-06T17:33:52.170Z receipt.updated        intentId=int_in_08 railStatus=SUCCESS proof=proven transactionId=8NG72142XL7552630
+# 75 2026-11-06T17:33:52.172Z item.read              itemId=in_09
+# 76 2026-11-06T17:33:53.289Z item.classified        itemId=in_09 classification=other
+# 77 2026-11-06T17:33:53.290Z risk.flagged           itemId=in_09
+# 78 2026-11-06T17:33:55.235Z run.summarized         totals={"proven":{"count":4,"amount":508800},"awaitingProof":{"count":1,"amount":64000},"held":{"count":2,"amount":480000},"stopped":{"count":1,"amount":115000}}
+# 79 2026-11-06T17:33:55.235Z run.completed          totals={"proven":{"count":4,"amount":508800},"awaitingProof":{"count":1,"amount":64000},"held":{"count":2,"amount":480000},"stopped":{"count":1,"amount":115000}}

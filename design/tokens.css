@@ -1,0 +1,139 @@
+/*
+ * tokens.css — 清台作战 · 六套风格预设（主控定稿，执行方不改数值）
+ *
+ * 用法：<html data-theme="fintech-precise"> 选一套；页面只用这里的变量，不写裸色值、裸字号。
+ * 主办方品牌色可以替换 --accent、--accent-contrast、--accent-text（写进 docs/07-UI.md 第 1 节，换完重跑对比度），其余不动。
+ * 字体：随仓库自带 woff2（design/fonts/，用 @fontsource 或官方发布包），不走 Google Fonts CDN——
+ *       国内录屏时 CDN 常加载失败，回落成系统字体，视频就变丑。
+ */
+
+/* ---------- 共用刻度（所有预设一致） ---------- */
+:root {
+  /* 字号：一屏最多用 4 级 */
+  --fs-xs: 12px;   /* 角标、表头小字 */
+  --fs-sm: 14px;   /* 次要信息 */
+  --fs-md: 16px;   /* 正文（中文正文不低于它） */
+  --fs-lg: 20px;   /* 小标题；视频里关键文字的下限 */
+  --fs-xl: 28px;   /* 区块标题 */
+  --fs-2xl: 40px;  /* 页面标题 */
+  --fs-3xl: 56px;  /* 主屏大数字 / 封面标题 */
+  --lh-tight: 1.15;
+  --lh-body: 1.55;
+
+  /* 间距：只用 4 的倍数 */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px;
+
+  /* 动效：有意义才动 */
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* 版心 */
+  --content-max: 1200px;
+}
+
+/* ---------- 1. fintech-precise：支付、银行、对账（PayPal、Airwallex、PAYATHON） ---------- */
+[data-theme="fintech-precise"] {
+  /* 本倉庫：網頁儀表板樣板（主控打樣，2026-11-01，見 design/sample/README.md）。
+     照宿主 2025 年的產品語言改：中性底、近黑字、主操作是黑色膠囊、藍只給連結與焦點。 */
+  --font-display: "Plus Jakarta Sans", "PingFang SC", "Noto Sans SC", sans-serif;
+  --font-body: "Plus Jakarta Sans", "PingFang SC", "Noto Sans SC", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --bg: #EDF1F7;  --surface: #FFFFFF;  --surface-2: #F3F5F9;
+  --text: #0A0E17; --text-muted: #586172; --border: #DCE1E9;
+  --accent: #0A0E17; --accent-contrast: #FFFFFF;
+  --accent-text: #1A56DB;
+  --success: #12753A; --warning: #B45309; --danger: #C0262D; --info: #1A56DB;
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px;
+  --radius-pill: 999px;
+  --shadow-1: 0 1px 2px rgba(10, 14, 23, 0.05), 0 1px 3px rgba(10, 14, 23, 0.04);
+  --shadow-2: 0 12px 32px rgba(10, 14, 23, 0.10);
+}
+
+/* ---------- 2. mission-control：agent 运维、看板、开发者工具（Vultr、Dinner Tower 看板） ---------- */
+[data-theme="mission-control"] {
+  --font-display: "Barlow Semi Condensed", "PingFang SC", "Noto Sans SC", sans-serif;
+  --font-body: "Barlow", "PingFang SC", "Noto Sans SC", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --bg: #07090D;  --surface: #0E131B;  --surface-2: #161D28;
+  --text: #E8EDF4; --text-muted: #8A97A8; --border: #1F2937;
+  --accent: #F5A524; --accent-contrast: #07090D;
+  --accent-text: #F5A524;
+  --success: #22C55E; --warning: #F5A524; --danger: #F43F5E; --info: #38BDF8;
+  --radius-sm: 4px; --radius-md: 8px; --radius-lg: 12px;
+  --shadow-1: 0 0 0 1px rgba(255, 255, 255, 0.04);
+  --shadow-2: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+/* ---------- 3. editorial-warm：面向消费者、讲故事、助手类（Qloo、对话产品） ---------- */
+[data-theme="editorial-warm"] {
+  --font-display: "Fraunces", "Noto Serif SC", "Songti SC", serif;
+  --font-body: "Source Sans 3", "PingFang SC", "Noto Sans SC", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --bg: #FBF8F3;  --surface: #FFFFFF;  --surface-2: #F3EDE4;
+  --text: #1F1A17; --text-muted: #6B625A; --border: #E8E0D5;
+  --accent: #C2410C; --accent-contrast: #FFFFFF;
+  --accent-text: #C2410C;
+  --success: #3F7D4E; --warning: #B7791F; --danger: #B42318; --info: #2F5D8A;
+  --radius-sm: 8px; --radius-md: 14px; --radius-lg: 20px;
+  --shadow-1: 0 1px 2px rgba(31, 26, 23, 0.06);
+  --shadow-2: 0 10px 30px rgba(31, 26, 23, 0.10);
+}
+
+/* ---------- 4. playful-bold：游戏、教育、年轻用户（EvoMeme 等） ---------- */
+[data-theme="playful-bold"] {
+  --font-display: "Fredoka", "PingFang SC", "Noto Sans SC", sans-serif;
+  --font-body: "Nunito", "PingFang SC", "Noto Sans SC", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --bg: #FFF8EC;  --surface: #FFFFFF;  --surface-2: #FFEFD6;
+  --text: #1B1B1F; --text-muted: #55556A; --border: #1B1B1F;
+  --accent: #FF5A36; --accent-contrast: #1B1B1F;   /* 番茄红只当填充色用，上面压深色字 */
+  --accent-text: #B5300E;                          /* 要用强调色写字时用这个 */
+  --success: #15803D; --warning: #F59E0B; --danger: #DC2626; --info: #2563EB;
+  --radius-sm: 10px; --radius-md: 16px; --radius-lg: 24px;
+  --shadow-1: 2px 2px 0 #1B1B1F;   /* 硬投影：这一套的签名，边框统一 2px */
+  --shadow-2: 4px 4px 0 #1B1B1F;
+}
+
+/* ---------- 5. public-clear：公共服务、应急科普、政务（深小应） ---------- */
+[data-theme="public-clear"] {
+  --font-display: "HarmonyOS Sans SC", "Noto Sans SC", "PingFang SC", sans-serif;
+  --font-body: "HarmonyOS Sans SC", "Noto Sans SC", "PingFang SC", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --fs-md: 18px;                    /* 这一套正文放大一级：给所有年龄的人看 */
+  --bg: #FFFFFF;  --surface: #F4F6F9;  --surface-2: #E9EDF3;
+  --text: #0F172A; --text-muted: #475569; --border: #CBD5E1;
+  --accent: #0B57D0; --accent-contrast: #FFFFFF;
+  --accent-text: #0B57D0;
+  --success: #1B7F3B; --warning: #F28C00; --danger: #D7261E; --info: #0B57D0;
+  /* 气象预警四色：只在表达预警等级时使用 */
+  --alert-blue: #1E64C8; --alert-yellow: #F2C200; --alert-orange: #F28C00; --alert-red: #D7261E;
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px;
+  --shadow-1: none;                 /* 扁平：强调靠 2px 边框与色块，不靠阴影 */
+  --shadow-2: none;
+}
+
+/* ---------- 6. tech-blueprint：国内企业技术、开源基础设施（openJiuwen、开放原子） ---------- */
+[data-theme="tech-blueprint"] {
+  --font-display: "HarmonyOS Sans SC", "Noto Sans SC", "PingFang SC", sans-serif;
+  --font-body: "HarmonyOS Sans SC", "Noto Sans SC", "PingFang SC", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --bg: #F5F8FC;  --surface: #FFFFFF;  --surface-2: #EAF0F8;
+  --text: #0A1F44; --text-muted: #51617D; --border: #D6DFEC;
+  --accent: #0A59F7; --accent-contrast: #FFFFFF;
+  --accent-text: #0A59F7;
+  --success: #007A55; --warning: #E08A00; --danger: #D42A2D; --info: #0A59F7;
+  /* 架构图分泳道用色：每条泳道一个，不混用 */
+  --lane-1: #0A59F7; --lane-2: #00A3A3; --lane-3: #E08A00;
+  --radius-sm: 6px; --radius-md: 10px; --radius-lg: 14px;
+  --shadow-1: 0 1px 2px rgba(10, 31, 68, 0.06);
+  --shadow-2: 0 8px 24px rgba(10, 31, 68, 0.08);
+}
+
+/* ---------- 全局卫生（所有预设共用） ---------- */
+html { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: var(--fs-md); line-height: var(--lh-body); -webkit-font-smoothing: antialiased; }
+h1, h2, h3 { font-family: var(--font-display); line-height: var(--lh-tight); }
+.num, td.num, [data-num] { font-variant-numeric: tabular-nums; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }

@@ -1,0 +1,15 @@
+{
+  "id": "in_07",
+  "from": "Jonas Berg <jonas@bergaudio.example>",
+  "to": "Maya <maya@lumenlark.example>",
+  "subject": "Invoice INV-001 — sound design",
+  "receivedAt": "2026-11-05T11:10:00Z",
+  "bodyText": "Hej Maya,\n\nAttached is INV-001 for the sound design and final mix of the product film. It's my first invoice with you — looking forward to the next project!\n\nJonas",
+  "attachments": [
+    {
+      "name": "BergAudio-INV-001.pdf",
+      "path": "demo/inbox/files/BergAudio-INV-001.pdf",
+      "sha256": "159ae3f81aea81eead1198cf17c9fc0ddff5189a7ec73157f7a0f5f72d1f9b1e"
+    }
+  ]
+}

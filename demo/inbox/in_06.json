@@ -1,0 +1,9 @@
+{
+  "id": "in_06",
+  "from": "Sofia Rossi <sofia@linguaviva.example>",
+  "to": "Maya <maya@lumenlark.example>",
+  "subject": "Invoice 1009 — brand guidelines translation",
+  "receivedAt": "2026-11-05T12:30:00Z",
+  "bodyText": "Ciao Maya,\n\nHere is my invoice for the brand guidelines translation:\n\nInvoice no. 1009\nDate: 5 November 2026\nFrom: Sofia Rossi — LinguaViva, Bologna, Italy\nTo: Lumen & Lark Studio\n\nTranslation of the Lumen & Lark brand guidelines, Italian → English\n8,200 words × $0.09 = $738.00\n\nTotal due: USD 738.00\nPlease pay via PayPal to sofia@linguaviva.example.\n\nGrazie mille!\nSofia",
+  "attachments": []
+}

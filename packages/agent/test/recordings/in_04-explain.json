@@ -1,0 +1,8 @@
+{
+  "recordedFrom": "proof/ai/explain-run-1/in_04-explain.json",
+  "model": "deepseek-flash",
+  "step": "explain",
+  "itemId": "in_04",
+  "requestedModel": "deepseek-chat",
+  "content": "{\"text\":\"The payment is held because the invoice asks to pay billing@studi0-north.example, which is unverified, while the verified payee on file is ana@studionorth.example, and a payee-change request from 4 November is still pending. A human must check the pending payee-change request and confirm the correct payee before this can proceed.\"}"
+}

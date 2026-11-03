@@ -1,0 +1,2150 @@
+/* Proof Before Pay — screen styles.
+ * Only design/tokens.css variables are used for colour, type and spacing.
+ * Font files ship with the repo (design/fonts/), never a CDN.
+ * Type ladder on the main screen (web-dashboard sample, design/sample/README.md):
+ *   --fs-xs 12 labels · --fs-sm 14 secondary · --fs-md 16 body · --fs-lg 20 panel title
+ *   · --fs-xl 28 totals · --fs-2xl 40 the one headline. Nothing else. */
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../../../design/fonts/plus-jakarta-sans-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../../../design/fonts/plus-jakarta-sans-latin-500-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../../../design/fonts/plus-jakarta-sans-latin-600-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../../../design/fonts/plus-jakarta-sans-latin-700-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('../../../design/fonts/plus-jakarta-sans-latin-800-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../../../design/fonts/ibm-plex-mono-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../../../design/fonts/ibm-plex-mono-latin-500-normal.woff2') format('woff2');
+}
+/* D1-3: `.dialog-amount` asks for Mono 600. Without this face the browser fakes the weight,
+   which smears the tabular figures of the amount the dialog is about. */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../../../design/fonts/ibm-plex-mono-latin-600-normal.woff2') format('woff2');
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------------ */
+/* Frame                                                               */
+/* ------------------------------------------------------------------ */
+
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.topbar {
+  flex: 0 0 56px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar-inner {
+  width: 100%;
+  max-width: 1312px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: 0 var(--sp-5);
+}
+
+.topbar-left,
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.brand-mark {
+  color: var(--text);
+  display: block;
+}
+
+.brand-name {
+  font-size: var(--fs-md);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.topbar-divider {
+  width: 1px;
+  height: 16px;
+  background: var(--border);
+  margin: 0 var(--sp-1);
+}
+
+.studio-name {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.sandbox-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  height: 32px;
+  padding: 0 var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.dot--success {
+  background: var(--success);
+}
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.avatar--menu {
+  width: auto;
+  height: 32px;
+  gap: var(--sp-1);
+  padding: 0 var(--sp-2) 0 var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+.avatar-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.menu-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + var(--sp-2));
+  right: 0;
+  z-index: 31;
+  min-width: 216px;
+  padding: var(--sp-1);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-2);
+}
+
+.menu-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  width: 100%;
+  padding: var(--sp-2) var(--sp-3);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  text-align: left;
+  cursor: pointer;
+}
+
+.menu-row:hover {
+  background: var(--surface-2);
+}
+
+.switch {
+  position: relative;
+  flex: none;
+  width: 28px;
+  height: 16px;
+  border-radius: 999px;
+  background: var(--border);
+  transition: background-color var(--dur-fast) var(--ease);
+}
+
+.switch.is-on {
+  background: var(--text);
+}
+
+.switch-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--surface);
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.switch.is-on .switch-knob {
+  transform: translateX(12px);
+}
+
+/* ------------------------------------------------------------------ */
+/* Buttons                                                             */
+/* ------------------------------------------------------------------ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  height: 40px;
+  padding: 0 var(--sp-5);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+
+.btn--sm {
+  height: 36px;
+  padding: 0 var(--sp-3);
+  font-size: var(--fs-sm);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--accent) 80%, var(--surface));
+}
+
+.btn--primary:disabled {
+  background: var(--surface-2);
+  color: var(--text-muted);
+  cursor: default;
+}
+
+.btn--secondary {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--text);
+}
+
+.btn--secondary:hover {
+  background: var(--surface-2);
+}
+
+.btn--danger {
+  background: var(--surface);
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.btn--danger:hover {
+  background: color-mix(in srgb, var(--danger) 6%, var(--surface));
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+/* ------------------------------------------------------------------ */
+/* Page, KPI band                                                      */
+/* ------------------------------------------------------------------ */
+
+.page {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: 1312px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  padding: var(--sp-4) var(--sp-5);
+}
+
+.hero {
+  flex: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: var(--sp-6);
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.hero-overline {
+  margin: 0;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* The one protagonist on the screen: a sentence that says how the run ended. */
+.hero-headline {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+/* Colour only where a person has to act (the held clause). */
+.hero-ask {
+  color: var(--warning);
+}
+
+.kpis {
+  flex: none;
+  display: grid;
+  grid-template-columns: repeat(4, 172px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+}
+
+.kpi {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--sp-1);
+  padding: var(--sp-3) var(--sp-4);
+  border-left: 1px solid var(--border);
+}
+
+.kpi:first-child {
+  border-left: 0;
+}
+
+.kpi-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.kpi-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.kpi-dot--solid.tone-success {
+  background: var(--success);
+}
+.kpi-dot--solid.tone-warning {
+  background: var(--warning);
+}
+.kpi-dot--solid.tone-danger {
+  background: var(--danger);
+}
+.kpi-dot--hollow {
+  border: 1.5px solid var(--text-muted);
+}
+
+.kpi-amount {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: var(--lh-tight);
+  letter-spacing: -0.02em;
+}
+
+.kpi-amount.is-empty {
+  color: color-mix(in srgb, var(--text-muted) 45%, var(--bg));
+  letter-spacing: 0;
+}
+
+.kpi-sub {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.work {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 448px;
+  gap: var(--sp-4);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+}
+
+/* ------------------------------------------------------------------ */
+/* Run list                                                            */
+/* ------------------------------------------------------------------ */
+
+.run {
+  /* Owed · Payee · Policy · PayPal were 164px: the four headers sat 4.2–5.5px apart and read as
+     one word (sample weakness 3, Fable 5.1). The extra 24px comes out of the first column; the
+     in-row sentence is short enough to keep its 8px letterspacing (measure-ui checks it). */
+  /* Status column is 152px: "Sending to PayPal…" with its spinner and padding measures 152px
+     (probe in T11), and a chip that ends in an ellipsis inside its own pill reads as a bug. The
+     16px come out of the name column; the one note that no longer fit was shortened in
+     RunList.rowNote rather than clipped. */
+  --run-cols: minmax(0, 1fr) 104px 184px 152px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.run-head {
+  flex: 0 0 48px;
+  height: 48px;
+  display: grid;
+  grid-template-columns: var(--run-cols);
+  column-gap: var(--sp-2);
+  align-items: center;
+  padding: 0 var(--sp-5);
+  border-bottom: 1px solid var(--border);
+}
+
+.run-head-main {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+  min-width: 0;
+}
+
+.run-head-label {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.run-head-label.is-num {
+  text-align: right;
+}
+
+/* The four proofs, named once above the chain they label. */
+.proof-legend {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  text-align: center;
+}
+
+.run-title {
+  margin: 0;
+  font-size: var(--fs-md);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.run-meta {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.run-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-4);
+  background: color-mix(in srgb, var(--danger) 7%, var(--surface));
+  border-bottom: 1px solid color-mix(in srgb, var(--danger) 26%, var(--border));
+  color: var(--danger);
+  font-size: var(--fs-md);
+}
+
+.run-banner-text {
+  flex: 1;
+  color: var(--text);
+}
+
+.run-colhead {
+  flex: 0 0 32px;
+  display: grid;
+  grid-template-columns: var(--run-cols);
+  align-items: center;
+  padding: 0 var(--sp-4);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.run-rows {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.run-row {
+  flex: 1 1 52px;
+  /* Nine emails arrive before the model has said which one is not an invoice, and an error
+     banner takes 40px out of the same card: the rows shrink instead of the last one being cut.
+     The cap keeps a one-row screen (a run that stopped early) from stretching a single row to
+     the whole card. */
+  max-height: 76px;
+  min-height: 40px;
+  display: grid;
+  grid-template-columns: var(--run-cols);
+  column-gap: var(--sp-2);
+  align-items: center;
+  width: 100%;
+  padding: 0 var(--sp-5);
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--fs-md);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+
+.run-row:last-child {
+  border-bottom: 0;
+}
+
+/* Emails a stopped run never reached: in the list, visibly not part of the result. */
+.run-row--unchecked {
+  /* One line only: these are the emails the run never reached, not results. They shrink with the
+     rest of the list (`0 1 40px`, not the `min-height: 40px` a result row keeps): eight of them
+     plus the row that failed is what overran the footer on a 1280×720 error screen, and the last
+     row was cut by 11.2px instead of the list taking 8 rows at 38.8px. One line (the name) needs
+     28px, so 32 is the floor. */
+  flex: 0 1 40px;
+  min-height: 32px;
+  cursor: default;
+  color: var(--text-muted);
+}
+
+.run-row--unchecked .payee-name {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.run-row--unchecked:hover {
+  background: transparent;
+}
+
+.run-row:hover:not(.is-selected) {
+  background: color-mix(in srgb, var(--surface-2) 60%, var(--surface));
+}
+
+.run-row.is-selected {
+  background: var(--surface-2);
+  box-shadow: inset 3px 0 0 var(--text);
+}
+
+/* D1-7: the selected row's background and the avatar's were the same grey, so the initials sat
+   in nothing. The avatar keeps a surface disc and a hairline on the selected row. */
+.run-row.is-selected .avatar {
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+
+.payee-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-width: 0;
+}
+
+.payee-cell .avatar {
+  width: 28px;
+  height: 28px;
+}
+
+.payee-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.row-note {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.payee-name {
+  font-weight: 700;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.invoice-cell {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.amount-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: var(--fs-md);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.3;
+}
+
+.amount-invoice {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* Owed · Payee · Policy · PayPal as one chain: a hairline joins the four stamps. */
+.proof-chain {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: center;
+}
+
+/* Owed · Payee · Policy · PayPal as one chain: a hairline joins the four stamps. */
+.proof-chain {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: center;
+}
+
+.proof-chain::before {
+  content: '';
+  position: absolute;
+  left: 12.5%;
+  right: 12.5%;
+  top: 50%;
+  height: 1px;
+  background: var(--border);
+}
+
+.stamp-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-cell {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.status-label {
+  text-align: right;
+}
+
+.run-foot {
+  flex: 0 0 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: 0 var(--sp-5);
+  border-top: 1px solid var(--border);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.ledger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+}
+
+/* ------------------------------------------------------------------ */
+/* Stamps and chips                                                    */
+/* ------------------------------------------------------------------ */
+
+.stamp {
+  display: inline-flex;
+  border-radius: 50%;
+  background: var(--surface);
+  /* The icon swaps in place; the wrapper's colour carries the 150ms change
+     so a stamp visibly lights up as the run moves (07-UI §4.5). */
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.run-row.is-selected .stamp,
+.run-row:hover .stamp {
+  background: var(--surface-2);
+}
+
+.stamp--pending,
+.stamp--awaiting {
+  color: var(--text-muted);
+}
+
+.stamp--checking {
+  color: var(--text-muted);
+  animation: spin 1.1s linear infinite;
+}
+
+.stamp--pass,
+.stamp--proven {
+  color: var(--success);
+}
+
+.stamp--hold {
+  color: var(--warning);
+}
+
+.stamp--fail {
+  color: var(--danger);
+}
+
+.stamp--na {
+  color: var(--border);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  max-width: 100%;
+  height: 26px;
+  padding: 0 var(--sp-2);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.chip--neutral {
+  background: var(--surface);
+  color: var(--text-muted);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+
+/* D1-6: a progress chip on a white row (and on the selected row's --surface-2) disappeared.
+   The 1px inset edge and the turning icon say "this is happening" without spending a colour. */
+.chip--progress {
+  background: var(--surface-2);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+
+.chip--progress svg {
+  animation: spin 1.1s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip--progress svg {
+    animation: none;
+  }
+}
+
+.chip--success {
+  background: color-mix(in srgb, var(--success) 12%, var(--surface));
+  color: var(--success);
+}
+
+.chip--warning {
+  background: var(--warning);
+  color: var(--accent-contrast);
+}
+
+.chip--danger {
+  background: color-mix(in srgb, var(--danger) 12%, var(--surface));
+  color: var(--danger);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Detail panel                                                        */
+/* ------------------------------------------------------------------ */
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5) var(--sp-4);
+  min-height: 0;
+  /* D1-2: the card is as tall as what it has to say. A fixed 505px (685px at 1440) left 240–420px
+     of empty card under the shortest states; the column may be taller than the panel. */
+  align-self: start;
+  overflow: hidden;
+}
+
+.detail-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  min-height: 0;
+}
+
+.detail.is-dev .detail-body {
+  overflow-y: auto;
+}
+
+.detail-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.detail-head .chip {
+  flex: none;
+}
+
+.detail-title {
+  margin: 0;
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.detail-sub {
+  margin: calc(var(--sp-2) * -1) 0 0;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+/* Body = any text that is a sentence (07-UI §4.3). 16px, never 14: the sample put its reasons,
+   its AI note and its banner at 14px and both blind judges called the screen small and dense. */
+.detail-text {
+  margin: 0;
+  font-size: var(--fs-md);
+  line-height: 1.5;
+}
+
+.detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+/* The signature moment sits in its own well: two addresses, one above the other, so the eye
+   compares them letter by letter. */
+.detail-section--payee {
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+}
+
+.detail-section--payee .payee-row svg {
+  margin-top: var(--sp-1);
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  margin: 0;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.payee-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+}
+
+.payee-row svg {
+  margin-top: calc(var(--sp-1) / 2);
+  flex: none;
+}
+
+.payee-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.payee-label {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.payee-email {
+  font-size: var(--fs-md);
+  font-weight: 500;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+
+.note-text {
+  margin: 0;
+  font-size: var(--fs-md);
+  line-height: 1.4;
+}
+
+.ai-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 16px;
+  padding: 0 var(--sp-1);
+  margin-left: var(--sp-1);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.why-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.why-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  font-size: var(--fs-md);
+  line-height: 1.35;
+}
+
+.why-item svg {
+  margin-top: calc(var(--sp-1) / 2);
+  flex: none;
+}
+
+.why-item--warning svg {
+  color: var(--warning);
+}
+
+.why-item--danger svg {
+  color: var(--danger);
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-row {
+  display: grid;
+  grid-template-columns: 20px 132px minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--sp-2);
+  min-height: 28px;
+  font-size: var(--fs-sm);
+}
+
+/* D1-8: six identical grey dots said nothing about how far the proof got. Each step now carries
+   its own mark on one hairline: checked (muted), the PayPal proof (success), or still to come. */
+.timeline-mark {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-self: stretch;
+  padding-top: var(--sp-1);
+  color: var(--text-muted);
+}
+
+.timeline-mark::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--border);
+}
+
+.timeline-row:first-child .timeline-mark::before {
+  top: 12px;
+}
+
+.timeline-row:last-child .timeline-mark::before {
+  bottom: calc(100% - 12px);
+}
+
+.timeline-mark svg {
+  position: relative;
+  background: var(--surface);
+}
+
+.timeline-mark--proven {
+  color: var(--success);
+}
+
+.timeline-mark--pending {
+  color: var(--border);
+}
+
+.timeline-label {
+  font-weight: 500;
+}
+
+.timeline-note {
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timeline-at {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.fact-list {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.fact-row {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: var(--sp-2);
+  align-items: baseline;
+  font-size: var(--fs-sm);
+}
+
+.fact-row dt {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.fact-row dt .stamp svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* The four stamps of one row, in the order a row earns them (07-UI §4.2). */
+.legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--sp-2);
+}
+
+.legend-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  text-align: center;
+}
+
+.legend-step::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: calc(-50% + var(--sp-3));
+  right: calc(50% + var(--sp-3));
+  height: 1px;
+  background: var(--border);
+}
+
+.legend-step:first-child::before {
+  display: none;
+}
+
+.legend-label {
+  font-size: var(--fs-xs);
+  line-height: 1.3;
+  color: var(--text-muted);
+}
+
+.fact-row dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Sample weakness 2: the last reason used to sit on the action bar's rule. 16px of air above the
+   rule is the floor; the states that need more drop content rather than shrink type. */
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-1);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--border);
+}
+
+.detail-foot {
+  margin: 0;
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.raw {
+  margin-top: var(--sp-2);
+  padding-top: var(--sp-2);
+  border-top: 1px solid var(--border);
+}
+
+.raw-summary {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.raw-body {
+  margin: var(--sp-1) 0 0;
+  max-height: var(--sp-8);
+  overflow: auto;
+  font-size: var(--fs-xs);
+  line-height: var(--lh-body);
+  color: var(--text-muted);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.tone-success {
+  color: var(--success);
+}
+
+.tone-danger {
+  color: var(--danger);
+}
+
+/* ------------------------------------------------------------------ */
+/* Signature moment: the zero                                          */
+/* ------------------------------------------------------------------ */
+
+/* D1-4: the highlight must not widen the address. Padding pushed `studi0-north` to read as
+   "studi 0 -north"; the tint bleeds outwards with a box-shadow so one cell stays one cell wide. */
+.zero-mark {
+  padding: 0;
+  border-radius: 3px;
+  color: var(--danger);
+  font-weight: 600;
+  background-color: color-mix(in srgb, var(--danger) 14%, transparent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--danger) 14%, transparent);
+  animation: zero-pulse var(--dur-fast) var(--ease) 1;
+}
+
+@keyframes zero-pulse {
+  from {
+    background-color: color-mix(in srgb, var(--danger) 46%, transparent);
+  }
+  to {
+    background-color: color-mix(in srgb, var(--danger) 14%, transparent);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Scrim, drawer, dialog                                               */
+/* ------------------------------------------------------------------ */
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  background: var(--text);
+  opacity: 0.28;
+  z-index: 10;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 560px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  padding: var(--sp-5);
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  box-shadow: var(--shadow-2);
+}
+
+.drawer-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.drawer-head-right {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.drawer-title {
+  margin: 0;
+  font-size: var(--fs-md);
+  font-weight: 600;
+}
+
+.drawer-sub {
+  margin: calc(var(--sp-1) / 2) 0 0;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.drawer-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* T11 rework: the sheet is laid out to end above the buttons at 1280×720, so this no longer
+     needs the fade that told the reader "more below" — the fade also washed out the last row when
+     there was nothing below it. `auto` stays as a guard for unforeseen content; with the real
+     bundle it never has to scroll (measured: scrollHeight = clientHeight). */
+  overflow-y: auto;
+}
+
+.drawer-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.drawer .fact-list {
+  gap: 2px;
+}
+
+/* The receipt band: the PayPal ids and the time PayPal answered, in one tinted well under the
+   title (尺子 w04: 付款證明是看得見的一欄，不是腳註). */
+.drawer-receipt {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--surface-2);
+  border-radius: var(--radius-md);
+}
+
+/* Two columns inside the band: five ids and timestamps fill three short rows instead of five. */
+.drawer .fact-list--receipt {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px var(--sp-4);
+}
+
+/* The receipt's labels are short ("Transaction", "Fetched"); giving 10px back to the value keeps
+   a PayPal batch id ("pbp-d3ff93…c691") on one line. */
+.drawer .fact-list--receipt .fact-row {
+  grid-template-columns: 74px minmax(0, 1fr);
+}
+
+/* One column of full-width facts: at 560px a two-column grid left 136px for the value, which
+   wrapped "the invoice total must equal $1,350.00." onto four lines and pushed the sheet 245px
+   past the fold. */
+.drawer-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* The six gate steps as one chain — the row's four stamps use the same hairline (07-UI §3). */
+.trail {
+  position: relative;
+  display: grid;
+  /* The first step's clock carries its date ("Nov 4 · 10:15"); the other five are seconds only. */
+  grid-template-columns: 1.3fr repeat(5, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.trail::before {
+  content: '';
+  position: absolute;
+  left: 10.3%;
+  right: 7.9%;
+  top: 10px;
+  height: 1px;
+  background: var(--border);
+}
+
+.trail-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-align: center;
+}
+
+.trail-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: var(--surface);
+  color: var(--text-muted);
+}
+
+.trail-step--proven .trail-mark {
+  color: var(--success);
+}
+
+.trail-label,
+.trail-at {
+  font-size: var(--fs-xs);
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+
+.drawer-foot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--sp-3);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--border);
+}
+
+.drawer-foot-actions {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+/* 07-UI §4.6: developer information is collapsible, exactly like the panel's "Raw events" — an
+   open switch must not push the sheet past 720px. */
+.drawer-dev {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.drawer-dev[open] {
+  flex-basis: 100%;
+}
+
+.drawer-dev-summary {
+  cursor: pointer;
+  font-size: var(--fs-xs);
+}
+
+.drawer-dev .fact-list {
+  margin-top: var(--sp-1);
+}
+
+/* The ledger line and the developer switch share one row, so turning the switch on costs no
+   height until it is opened (the same disclosure model as the panel's "Raw events"). */
+.drawer-footline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-1) var(--sp-3);
+  padding-top: var(--sp-2);
+  border-top: 1px solid var(--border);
+}
+
+.drawer-ledger {
+  margin: 0;
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.dialog {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2);
+}
+
+.dialog-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-5) var(--sp-5) 0;
+}
+
+.dialog-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  padding: var(--sp-4) var(--sp-5);
+}
+
+.verify-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3);
+}
+
+.verify-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.verify-card--ok {
+  background: color-mix(in srgb, var(--success) 4%, var(--surface));
+  border-color: color-mix(in srgb, var(--success) 26%, var(--border));
+}
+
+.verify-card--bad {
+  background: color-mix(in srgb, var(--danger) 4%, var(--surface));
+  border-color: color-mix(in srgb, var(--danger) 26%, var(--border));
+}
+
+.verify-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.verify-card--ok .verify-label svg {
+  color: var(--success);
+}
+
+.verify-card--bad .verify-label svg {
+  color: var(--danger);
+}
+
+.verify-email {
+  font-size: var(--fs-sm);
+  overflow-wrap: anywhere;
+}
+
+.verify-note {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.verify-instruction {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin: 0;
+  font-size: var(--fs-md);
+  color: var(--text-muted);
+}
+
+.verify-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.radio-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  height: 44px;
+  padding: 0 var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease);
+}
+
+.radio-row.is-checked {
+  border-color: var(--text);
+}
+
+.radio-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  flex: none;
+  transition: border-width var(--dur-fast) var(--ease);
+}
+
+.radio-row.is-checked .radio-dot {
+  border-color: var(--text);
+  background: var(--text);
+  box-shadow: inset 0 0 0 3px var(--surface);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.field-label {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.field-input {
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+  resize: none;
+}
+
+.field-input:focus {
+  outline: none;
+  border-color: var(--text);
+}
+
+.dialog-foot {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-4) var(--sp-5) var(--sp-5);
+  border-top: 1px solid var(--border);
+}
+
+.dialog-amount-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  margin-right: auto;
+}
+
+.dialog-amount-label {
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.dialog-amount {
+  font-size: var(--fs-md);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* ------------------------------------------------------------------ */
+/* Not connected                                                       */
+/* ------------------------------------------------------------------ */
+
+.not-connected {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: var(--sp-7);
+}
+
+.not-connected-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  max-width: 480px;
+  padding: var(--sp-7);
+}
+
+.not-connected-title {
+  margin: 0;
+  font-size: var(--fs-lg);
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------------ */
+/* T8: screens, nav, skeleton, notices                                 */
+/* ------------------------------------------------------------------ */
+
+.topnav {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  margin-left: var(--sp-5);
+  margin-right: auto;
+}
+
+.topnav-tab {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+.topnav-tab:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.topnav-tab.is-on {
+  color: var(--text);
+  font-weight: 700;
+  background: var(--surface-2);
+}
+
+.run-banner--global {
+  margin: 0 var(--sp-5) var(--sp-3);
+}
+
+.run-banner--comparison {
+  /* 07-UI §4.7: a danger band, the same one the run screen uses for a stopped run. */
+  background: color-mix(in srgb, var(--danger) 7%, var(--surface));
+  border-top: 1px solid color-mix(in srgb, var(--danger) 26%, var(--border));
+  border-bottom: 1px solid color-mix(in srgb, var(--danger) 26%, var(--border));
+  color: var(--text);
+}
+
+/* ---- D1-12: the loading skeleton uses the real geometry ---------------- */
+
+.skeleton {
+  display: block;
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  animation: skeleton-breathe var(--dur-base) var(--ease) infinite alternate;
+}
+
+@keyframes skeleton-breathe {
+  from { opacity: 1; }
+  to { opacity: 0.55; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+}
+
+.skeleton-logo { width: 20px; height: 20px; border-radius: var(--radius-sm); }
+.skeleton-brand { width: 132px; height: var(--sp-3); }
+.skeleton-chip { width: 124px; height: var(--sp-4); border-radius: var(--radius-pill); }
+.skeleton-avatar { width: 32px; height: 32px; border-radius: 50%; }
+.skeleton-button { width: 132px; height: 40px; border-radius: var(--radius-pill); }
+.skeleton-overline { width: 184px; height: var(--sp-3); }
+.skeleton-headline { width: 400px; height: var(--sp-7); margin-top: var(--sp-1); }
+.skeleton-headline--short { width: 320px; }
+.skeleton-label { width: 96px; height: var(--sp-3); }
+.skeleton-amount { width: 132px; height: var(--fs-xl); margin-top: var(--sp-2); }
+.skeleton-sub { width: 72px; height: var(--sp-3); margin-top: var(--sp-2); }
+.skeleton-title { width: 208px; height: var(--fs-md); }
+.skeleton-meta { width: 148px; height: var(--sp-3); }
+.skeleton-cell { width: 72px; height: var(--sp-3); }
+.skeleton-name { width: 112px; height: var(--sp-3); }
+.skeleton-note { width: 184px; height: var(--sp-3); margin-top: var(--sp-2); }
+.skeleton-avatar-sm { width: 32px; height: 32px; border-radius: 50%; flex: none; }
+.skeleton-stamp { width: 20px; height: 20px; border-radius: 50%; justify-self: center; }
+.skeleton-status { width: 84px; height: var(--sp-5); border-radius: var(--radius-pill); }
+.skeleton-foot { width: 220px; height: var(--sp-3); }
+.skeleton-block { width: 100%; height: 64px; margin-top: var(--sp-4); }
+.skeleton-block--short { height: 96px; }
+
+.skeleton-row {
+  /* Same grid, padding and height as .run-row: only the content is a placeholder. */
+  cursor: default;
+}
+
+.skeleton-row:hover { background: transparent; }
+
+/* ---- Notices ---------------------------------------------------------- */
+
+.detail-text + .detail-text { margin-top: var(--sp-2); }
+
+/* ---- Inbox ------------------------------------------------------------ */
+
+.inbox {
+  display: flex;
+  flex-direction: column;
+  /* Fill the page: a fixed calc() left a band of empty page under the card at 720p. */
+  flex: 1;
+  min-height: 0;
+}
+
+.inbox-head,
+.ledger-screen-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--border);
+  height: 44px;
+  flex: none;
+}
+
+.inbox-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 0;
+  flex: 1;
+}
+
+.inbox-list {
+  list-style: none;
+  margin: 0;
+  padding: var(--sp-2) var(--sp-2) var(--sp-5);
+  overflow: auto;
+  border-right: 1px solid var(--border);
+  /* Same cue as the detail drawer: nine emails do not fit at 720p, and a row cut clean in half
+     at the card edge reads as a layout bug. Fade the last 16px so the cut says "more below". */
+  mask-image: linear-gradient(to bottom, var(--text) calc(100% - var(--sp-4)), transparent);
+}
+
+.inbox-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-sm);
+  padding: var(--sp-3);
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.inbox-row:hover { background: var(--surface-2); }
+.inbox-row.is-selected { background: var(--surface-2); box-shadow: inset 2px 0 0 var(--text); }
+
+.inbox-row-top,
+.inbox-row-bottom {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  justify-content: space-between;
+}
+
+.inbox-from { font-size: var(--fs-sm); font-weight: 600; }
+.inbox-at { font-size: var(--fs-xs); color: var(--text-muted); }
+.inbox-subject { font-size: var(--fs-md); }
+.inbox-files { display: flex; flex-wrap: wrap; gap: var(--sp-1); }
+
+.file-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 2px var(--sp-2);
+}
+
+.file-chip--link { text-decoration: none; color: var(--text-muted); }
+.file-chip--link:hover { border-color: var(--text-muted); }
+.file-hash { color: var(--text-muted); }
+
+.inbox-preview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  overflow: auto;
+}
+
+.preview-head { display: flex; flex-direction: column; gap: var(--sp-1); }
+.preview-subject { margin: 0; font-size: var(--fs-md); font-weight: 600; }
+.preview-meta { margin: 0; font-size: var(--fs-sm); color: var(--text-muted); }
+
+.preview-body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-md);
+  line-height: var(--lh-body);
+  white-space: pre-wrap;
+  color: var(--text);
+}
+
+.preview-foot { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: auto; }
+
+/* ---- Ledger ----------------------------------------------------------- */
+
+.ledger-screen {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.chain-badge {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-1) var(--sp-2);
+}
+
+.chain-badge.is-ok { color: var(--success); }
+.chain-badge.is-broken { color: var(--danger); }
+
+.ledger-screen-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.filters { display: flex; gap: var(--sp-1); }
+
+.ledger-screen-toolbar .btn { margin-left: auto; }
+
+.filter {
+  appearance: none;
+  font: inherit;
+  font-size: var(--fs-sm);
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: var(--sp-1) var(--sp-3);
+  cursor: pointer;
+}
+
+.filter:hover { background: var(--surface-2); }
+
+.filter.is-on {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+  font-weight: 500;
+}
+
+.ledger-rows {
+  overflow: auto;
+  padding: var(--sp-2) 0 var(--sp-5);
+  /* Same fade as the inbox list: the ledger is longer than a 720p card, and the next event
+     peeking through says there is more without cutting a row in half. */
+  mask-image: linear-gradient(to bottom, var(--text) calc(100% - var(--sp-4)), transparent);
+}
+
+.ledger-row {
+  display: grid;
+  grid-template-columns: 56px 88px 176px 1fr 72px;
+  gap: var(--sp-2);
+  align-items: baseline;
+  padding: var(--sp-1) var(--sp-4);
+  font-size: var(--fs-sm);
+  border-bottom: 1px solid var(--border);
+}
+
+.ledger-seq { color: var(--text-muted); font-size: var(--fs-xs); }
+.ledger-at { color: var(--text-muted); font-size: var(--fs-xs); }
+.ledger-title { font-weight: 500; }
+.ledger-detail { color: var(--text-muted); font-size: var(--fs-xs); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ledger-hash { color: var(--text-muted); font-size: var(--fs-xs); text-align: right; }
+
+/* ---- Comparison ------------------------------------------------------- */
+
+.comparison {
+  display: flex;
+  flex-direction: column;
+  /* The comparison screen has no KPI band, so it takes the whole page height instead of a
+     magic calc() that stopped 40px short at 720p. */
+  flex: 1;
+  min-height: 0;
+}
+
+/* The comparison header is a row of three things, not the run list's four-column grid. */
+.comparison .run-head {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: 0 var(--sp-4);
+  flex: 0 0 56px;
+  height: 56px;
+}
+
+.comparison .run-head .btn {
+  margin-left: auto;
+}
+
+.comparison-head,
+.comparison-row {
+  display: grid;
+  grid-template-columns: 1fr 140px 160px 140px;
+  gap: var(--sp-3);
+  align-items: center;
+  padding: 0 var(--sp-4);
+}
+
+.comparison-head {
+  height: 32px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+.comparison-rows {
+  /* Rows keep their 48px and never squash: the screen has to show every payout the agent made,
+     even when its closing message is long (T8 round 3: 7 rows, else the screenshot lies). */
+  flex: 0 0 auto;
+  overflow: auto;
+}
+
+.comparison-row {
+  flex: 0 0 48px;
+  height: 48px;
+  border-bottom: 1px solid var(--border);
+  font-size: var(--fs-sm);
+}
+
+.comparison-who { font-size: var(--fs-sm); }
+/* Developer switch only (07-UI §4.6): the sandbox account PayPal actually received. */
+.comparison-who-dev {
+  display: block;
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+}
+.comparison-verdict { color: var(--text-muted); font-size: var(--fs-sm); }
+.comparison-empty { padding: var(--sp-5) var(--sp-4); }
+
+.comparison-summary {
+  /* The agent's own words take whatever is left and scroll inside it — the payouts above are the
+     evidence, the paragraph is the quote. */
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  /* macOS hides overlay scrollbars, so a long closing note used to end in a half-cut line that
+     reads as a rendering bug. Fade the last 24px instead: the cut says "there is more below". */
+  mask-image: linear-gradient(to bottom, var(--text) calc(100% - var(--sp-5)), transparent);
+  margin-top: 0;
+  padding: var(--sp-4);
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+/* Real PayPal ids are longer than the design fixture's, so the note wraps instead of spilling
+   into the timestamp column (07-UI §4.6 #3: nothing overflows, nothing is clipped). */
+.timeline-note {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* ---- Comparison: the agent's own words, as a quote --------------------- */
+
+/* Verbatim (AC-14), but nobody should be reading `##` and `**` on screen (defect 3). */
+.quote {
+  margin: 0;
+  padding: var(--sp-3) var(--sp-4);
+  border-left: 2px solid var(--border);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--surface-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.quote-heading {
+  margin: 0;
+  font-size: var(--fs-md);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.quote-text {
+  margin: 0;
+  font-size: var(--fs-md);
+  line-height: 1.5;
+}
+
+.quote-list {
+  margin: 0;
+  padding-left: var(--sp-5);
+  font-size: var(--fs-md);
+  line-height: 1.5;
+}
+
+.quote-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+
+.quote-table th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  padding: var(--sp-1) var(--sp-2);
+}
+
+.quote-table td {
+  padding: var(--sp-1) var(--sp-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.quote-table tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Same for the ledger's detail column: an error message or a batch id may be long, and a ledger
+   that hides half of it is worse than one that takes two lines. */
+.ledger-detail {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-overflow: clip;
+}
+
+.ledger-row {
+  align-items: start;
+}

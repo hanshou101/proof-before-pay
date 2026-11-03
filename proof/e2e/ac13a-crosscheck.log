@@ -1,0 +1,9 @@
+intent        paypal      transaction            bundle      verdict
+int_in_01     SUCCESS     51362714YW504453D      51362714YW504453D PASS
+int_in_02     SUCCESS     8D725838LA9547813      8D725838LA9547813 PASS
+int_in_06     SUCCESS     9PC99633TJ9130636      9PC99633TJ9130636 PASS
+int_in_08     SUCCESS     04Y64977PR5968946      04Y64977PR5968946 PASS
+
+wrote proof/e2e/ac13a-crosscheck.json
+
+ALL PASS — 4 proven payout(s) confirmed by PayPal itself.

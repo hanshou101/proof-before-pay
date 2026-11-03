@@ -1,0 +1,41 @@
+# AC-11 · 2026-11-01T10:37:10.397Z
+demo:reset → epoch ep-8iyvegt2qsma4f94 (seeded history paid through the real sandbox)
+before: proven 0 · head 2 · phase idle
+KPI on a fresh page: — — — —
+clicked "Run Friday payouts"
+run finished in 216.6s (limit 240s)
+totals vs golden.totalsAfterRun: EQUAL
+rows:
+in_01 proven PASS
+in_02 proven PASS
+in_03 blocked PASS
+in_04 held PASS
+in_05 held PASS
+in_06 proven PASS
+in_07 awaiting PASS
+in_08 proven PASS
+in_09 ignored PASS
+KPI on the finished screen: $5,088.00 $640.00 $4,800.00 $1,150.00
+screen KPI: $5,088.00 $640.00 $4,800.00 $1,150.00
+screen row in_01 → Proven
+screen row in_02 → Proven
+screen row in_03 → Blocked
+screen row in_04 → Held
+screen row in_05 → Held
+screen row in_06 → Proven
+screen row in_07 → Awaiting proof
+screen row in_08 → Proven
+screen banner: none · header button: Review 2 held · Ledger verified · 79 events
+wrote proof/ui/hero-done-1280x720.png
+crosscheck:
+intent        paypal      transaction            bundle      verdict
+int_in_01     SUCCESS     3XS648048C658854Y      3XS648048C658854Y PASS
+int_in_02     SUCCESS     92655046AK0198631      92655046AK0198631 PASS
+int_in_06     SUCCESS     2EA947905E447400T      2EA947905E447400T PASS
+int_in_08     SUCCESS     8NG72142XL7552630      8NG72142XL7552630 PASS
+
+wrote proof/e2e/ac11-crosscheck.json
+
+ALL PASS — 4 proven payout(s) confirmed by PayPal itself.
+
+AC-11 PASS

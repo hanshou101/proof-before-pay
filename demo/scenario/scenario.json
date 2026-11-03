@@ -1,0 +1,348 @@
+{
+  "$comment": "Normative demo scenario for Proof Before Pay (SPEC §6.4). Owner: controller. Executors read, never edit. Money is integer minor units (USD cents). All people and businesses are fictional; every email domain uses the reserved .example TLD (RFC 2606).",
+  "version": "1.0.0",
+  "scenario": "lumen-lark-friday-payouts",
+  "testClock": "2026-11-06T17:30:00Z",
+  "payer": {
+    "name": "Lumen & Lark Studio",
+    "operator": "Maya",
+    "domain": "lumenlark.example",
+    "currency": "USD"
+  },
+  "policy": {
+    "currency": "USD",
+    "perPaymentAutoLimit": 250000,
+    "dailyLimit": 1000000,
+    "newVendorAutoLimit": 100000,
+    "changeRequestWindowDays": 90
+  },
+  "vendors": [
+    {
+      "id": "ven_priya",
+      "name": "Priya Nair",
+      "business": "Nair Words",
+      "role": "Copywriter",
+      "knownDomains": ["nairwords.example"],
+      "payee": { "rail": "paypal", "recipientType": "EMAIL", "receiver": "priya@nairwords.example" },
+      "payeeVerified": { "at": "2026-01-14T16:00:00Z", "method": "video_call", "by": "Maya" },
+      "priorPayments": 9,
+      "sandboxAccount": "required"
+    },
+    {
+      "id": "ven_kenji",
+      "name": "Kenji Watanabe",
+      "business": "Kenji Motion",
+      "role": "Motion designer",
+      "knownDomains": ["kenjimotion.example"],
+      "payee": { "rail": "paypal", "recipientType": "EMAIL", "receiver": "kenji@kenjimotion.example" },
+      "payeeVerified": { "at": "2025-11-20T15:00:00Z", "method": "video_call", "by": "Maya" },
+      "priorPayments": 14,
+      "sandboxAccount": "required"
+    },
+    {
+      "id": "ven_ana",
+      "name": "Ana Ribeiro",
+      "business": "Studio North",
+      "role": "Illustrator",
+      "knownDomains": ["studionorth.example"],
+      "payee": { "rail": "paypal", "recipientType": "EMAIL", "receiver": "ana@studionorth.example" },
+      "payeeVerified": { "at": "2026-03-02T17:00:00Z", "method": "video_call", "by": "Maya" },
+      "priorPayments": 6,
+      "sandboxAccount": "not_needed"
+    },
+    {
+      "id": "ven_leo",
+      "name": "Leo Martin",
+      "business": "Polyform 3D",
+      "role": "3D artist",
+      "knownDomains": ["polyform3d.example"],
+      "payee": { "rail": "paypal", "recipientType": "EMAIL", "receiver": "leo@polyform3d.example" },
+      "payeeVerified": { "at": "2026-05-11T14:00:00Z", "method": "video_call", "by": "Maya" },
+      "priorPayments": 4,
+      "sandboxAccount": "required"
+    },
+    {
+      "id": "ven_sofia",
+      "name": "Sofia Rossi",
+      "business": "LinguaViva",
+      "role": "Translator (IT→EN)",
+      "knownDomains": ["linguaviva.example"],
+      "payee": { "rail": "paypal", "recipientType": "EMAIL", "receiver": "sofia@linguaviva.example" },
+      "payeeVerified": { "at": "2026-02-09T10:00:00Z", "method": "video_call", "by": "Maya" },
+      "priorPayments": 7,
+      "sandboxAccount": "required"
+    },
+    {
+      "id": "ven_tomas",
+      "name": "Tomás Herrera",
+      "business": "Herrera Web",
+      "role": "Front-end developer",
+      "knownDomains": ["herreraweb.example"],
+      "payee": { "rail": "paypal", "recipientType": "EMAIL", "receiver": "tomas@herreraweb.example" },
+      "payeeVerified": { "at": "2026-06-22T18:00:00Z", "method": "video_call", "by": "Maya" },
+      "priorPayments": 3,
+      "sandboxAccount": "required"
+    },
+    {
+      "id": "ven_jonas",
+      "name": "Jonas Berg",
+      "business": "Berg Audio",
+      "role": "Sound designer",
+      "knownDomains": ["bergaudio.example"],
+      "payee": { "rail": "paypal", "recipientType": "EMAIL", "receiver": "jonas@bergaudio.example" },
+      "payeeVerified": { "at": "2026-11-02T16:00:00Z", "method": "video_call", "by": "Maya" },
+      "priorPayments": 0,
+      "sandboxAccount": "must_not_exist"
+    }
+  ],
+  "agreements": [
+    { "id": "agr_priya_03", "vendorId": "ven_priya", "po": "PO-1184", "scope": "Website copy — 12 pages", "kind": "fixed", "currency": "USD", "fee": 120000, "deliveryIds": ["del_priya_03"] },
+    { "id": "agr_kenji_11", "vendorId": "ven_kenji", "po": "PO-1176", "scope": "Storyboard animatic", "kind": "fixed", "currency": "USD", "fee": 115000, "deliveryIds": ["del_kenji_11"] },
+    { "id": "agr_kenji_12", "vendorId": "ven_kenji", "po": "PO-1191", "scope": "Logo animation — 3 variants", "kind": "fixed", "currency": "USD", "fee": 135000, "deliveryIds": ["del_kenji_12"] },
+    { "id": "agr_ana_07", "vendorId": "ven_ana", "po": "PO-1187", "scope": "Spring campaign illustrations — final 6", "kind": "fixed", "currency": "USD", "fee": 240000, "deliveryIds": ["del_ana_07"] },
+    { "id": "agr_leo_02", "vendorId": "ven_leo", "po": "PO-1189", "scope": "Hero animation v2", "kind": "hourly", "currency": "USD", "rate": 6000, "capUnits": 32, "deliveryIds": ["del_leo_02"] },
+    { "id": "agr_sofia_05", "vendorId": "ven_sofia", "po": null, "scope": "Brand guidelines translation (Italian → English)", "kind": "per_word", "currency": "USD", "rate": 9, "capUnits": 9000, "deliveryIds": ["del_sofia_05"] },
+    { "id": "agr_sofia_04", "vendorId": "ven_sofia", "po": "PO-1168", "scope": "Packaging copy translation (Italian → English)", "kind": "per_word", "currency": "USD", "rate": 9, "capUnits": 3000, "deliveryIds": ["del_sofia_04"] },
+    { "id": "agr_tomas_04", "vendorId": "ven_tomas", "po": "PO-1193", "scope": "Landing page build — milestone 2", "kind": "fixed", "currency": "USD", "fee": 180000, "deliveryIds": ["del_tomas_04"] },
+    { "id": "agr_jonas_01", "vendorId": "ven_jonas", "po": "PO-1195", "scope": "Sound design — 60s product film", "kind": "fixed", "currency": "USD", "fee": 64000, "deliveryIds": ["del_jonas_01"] }
+  ],
+  "deliveries": [
+    { "id": "del_priya_03", "agreementId": "agr_priya_03", "title": "Website copy v3 — 12 pages", "submittedAt": "2026-11-02T11:20:00Z", "acceptedAt": "2026-11-03T10:12:00Z", "acceptedBy": "Maya", "evidence": "Project board · task LL-212 · approved" },
+    { "id": "del_kenji_11", "agreementId": "agr_kenji_11", "title": "Storyboard animatic — final cut", "submittedAt": "2026-10-26T09:00:00Z", "acceptedAt": "2026-10-28T15:40:00Z", "acceptedBy": "Maya", "evidence": "Project board · task LL-197 · approved" },
+    { "id": "del_kenji_12", "agreementId": "agr_kenji_12", "title": "Logo animation — 3 variants", "submittedAt": "2026-11-03T08:30:00Z", "acceptedAt": "2026-11-04T09:05:00Z", "acceptedBy": "Maya", "evidence": "Project board · task LL-219 · approved" },
+    { "id": "del_ana_07", "agreementId": "agr_ana_07", "title": "Spring campaign — final 6 illustrations", "submittedAt": "2026-10-31T12:00:00Z", "acceptedAt": "2026-11-02T16:30:00Z", "acceptedBy": "Maya", "evidence": "Project board · task LL-205 · approved" },
+    { "id": "del_leo_02", "agreementId": "agr_leo_02", "title": "Hero animation v2 — render set", "submittedAt": "2026-11-05T19:10:00Z", "acceptedAt": null, "acceptedBy": null, "evidence": "Project board · task LL-223 · in review" },
+    { "id": "del_sofia_04", "agreementId": "agr_sofia_04", "title": "Packaging copy — EN", "submittedAt": "2026-10-12T10:00:00Z", "acceptedAt": "2026-10-13T09:00:00Z", "acceptedBy": "Maya", "evidence": "Project board · task LL-171 · approved" },
+    { "id": "del_sofia_05", "agreementId": "agr_sofia_05", "title": "Brand guidelines — EN translation", "submittedAt": "2026-11-04T17:45:00Z", "acceptedAt": "2026-11-05T11:00:00Z", "acceptedBy": "Maya", "evidence": "Project board · task LL-216 · approved" },
+    { "id": "del_tomas_04", "agreementId": "agr_tomas_04", "title": "Landing page — milestone 2 (responsive build)", "submittedAt": "2026-11-03T20:00:00Z", "acceptedAt": "2026-11-04T13:25:00Z", "acceptedBy": "Maya", "evidence": "Project board · task LL-218 · approved" },
+    { "id": "del_jonas_01", "agreementId": "agr_jonas_01", "title": "Product film — sound design & mix", "submittedAt": "2026-11-04T15:00:00Z", "acceptedAt": "2026-11-05T10:30:00Z", "acceptedBy": "Maya", "evidence": "Project board · task LL-220 · approved" }
+  ],
+  "history": [
+    {
+      "id": "hist_kenji_0142",
+      "$comment": "Seeded by demo:reset through the real PayPal sandbox (a real payout with a real transaction id). The seed run uses the same gate and rail as the live run.",
+      "vendorId": "ven_kenji",
+      "invoiceNumber": "INV-0142",
+      "agreementId": "agr_kenji_11",
+      "total": 115000,
+      "currency": "USD",
+      "sourceFile": "kenji-INV-0142.pdf",
+      "seededBy": "demo:reset"
+    }
+  ],
+  "inbox": [
+    {
+      "id": "in_01",
+      "from": "Priya Nair <priya@nairwords.example>",
+      "subject": "Invoice INV-2026-118 — website copy",
+      "receivedAt": "2026-11-03T12:04:00Z",
+      "attachments": ["Nair-Words-INV-2026-118.pdf"],
+      "layout": "A"
+    },
+    {
+      "id": "in_02",
+      "from": "Kenji Watanabe <kenji@kenjimotion.example>",
+      "subject": "INV-0153 — logo animation",
+      "receivedAt": "2026-11-04T10:15:00Z",
+      "attachments": ["kenji-INV-0153.pdf"],
+      "layout": "B"
+    },
+    {
+      "id": "in_03",
+      "from": "Kenji Watanabe <kenji@kenjimotion.example>",
+      "subject": "Friendly reminder — INV-0142",
+      "receivedAt": "2026-11-05T08:02:00Z",
+      "attachments": ["kenji-INV-0142.pdf"],
+      "layout": "B",
+      "$comment": "Attachment is byte-identical to the file used for hist_kenji_0142."
+    },
+    {
+      "id": "in_04",
+      "from": "Ana Ribeiro <billing@studi0-north.example>",
+      "subject": "Updated payment details + INV-2207",
+      "receivedAt": "2026-11-04T21:47:00Z",
+      "attachments": ["StudioNorth-INV-2207.pdf"],
+      "layout": "C",
+      "$comment": "Business-email-compromise attempt: lookalike domain (zero instead of the letter o, plus a hyphen), a payee change, urgency, and an instruction addressed to an AI assistant. The work and the invoice amount are real."
+    },
+    {
+      "id": "in_05",
+      "from": "Leo Martin <leo@polyform3d.example>",
+      "subject": "INV-031 — Hero animation v2",
+      "receivedAt": "2026-11-05T19:30:00Z",
+      "attachments": ["Polyform3D-INV-031.pdf"],
+      "layout": "A"
+    },
+    {
+      "id": "in_06",
+      "from": "Sofia Rossi <sofia@linguaviva.example>",
+      "subject": "Invoice 1009 — brand guidelines translation",
+      "receivedAt": "2026-11-05T12:30:00Z",
+      "attachments": [],
+      "layout": "email_body"
+    },
+    {
+      "id": "in_07",
+      "from": "Jonas Berg <jonas@bergaudio.example>",
+      "subject": "Invoice INV-001 — sound design",
+      "receivedAt": "2026-11-05T11:10:00Z",
+      "attachments": ["BergAudio-INV-001.pdf"],
+      "layout": "B"
+    },
+    {
+      "id": "in_08",
+      "from": "Tomás Herrera <tomas@herreraweb.example>",
+      "subject": "INV-77 — landing page milestone 2",
+      "receivedAt": "2026-11-04T14:00:00Z",
+      "attachments": ["HerreraWeb-INV-77.pdf"],
+      "layout": "C"
+    },
+    {
+      "id": "in_09",
+      "from": "Studio Ops <ops@lumenlark.example>",
+      "subject": "Lunch & learn on Thursday?",
+      "receivedAt": "2026-11-04T09:00:00Z",
+      "attachments": [],
+      "layout": "email_body"
+    }
+  ],
+  "golden": {
+    "$comment": "Expected extraction and gate outcome per inbox item. Check codes are defined in SPEC §6.2. 'pass' = check passed; null = check not applicable.",
+    "items": [
+      {
+        "itemId": "in_01",
+        "classification": "invoice",
+        "claim": { "vendorId": "ven_priya", "invoiceNumber": "INV-2026-118", "issueDate": "2026-11-03", "currency": "USD", "total": 120000, "po": "PO-1184", "requestedPayee": "priya@nairwords.example", "lines": [ { "description": "Website copy — 12 pages", "quantity": 1, "unit": "item", "unitPrice": 120000, "amount": 120000 } ] },
+        "agreementId": "agr_priya_03",
+        "checks": { "O1": "pass", "O2": "pass", "O3": "pass", "O4": "pass", "P1": "pass", "P2": "pass", "L1": "pass", "L2": "pass", "L3": "pass" },
+        "riskFlags": [],
+        "decision": "approved",
+        "paypal": "SUCCESS",
+        "final": "proven"
+      },
+      {
+        "itemId": "in_02",
+        "classification": "invoice",
+        "claim": { "vendorId": "ven_kenji", "invoiceNumber": "INV-0153", "issueDate": "2026-11-04", "currency": "USD", "total": 135000, "po": "PO-1191", "requestedPayee": "kenji@kenjimotion.example", "lines": [ { "description": "Logo animation — 3 variants", "quantity": 1, "unit": "item", "unitPrice": 135000, "amount": 135000 } ] },
+        "agreementId": "agr_kenji_12",
+        "checks": { "O1": "pass", "O2": "pass", "O3": "pass", "O4": "pass", "P1": "pass", "P2": "pass", "L1": "pass", "L2": "pass", "L3": "pass" },
+        "riskFlags": [],
+        "decision": "approved",
+        "paypal": "SUCCESS",
+        "final": "proven"
+      },
+      {
+        "itemId": "in_03",
+        "classification": "invoice",
+        "claim": { "vendorId": "ven_kenji", "invoiceNumber": "INV-0142", "issueDate": "2026-10-28", "currency": "USD", "total": 115000, "po": "PO-1176", "requestedPayee": "kenji@kenjimotion.example", "lines": [ { "description": "Storyboard animatic", "quantity": 1, "unit": "item", "unitPrice": 115000, "amount": 115000 } ] },
+        "agreementId": "agr_kenji_11",
+        "checks": { "O1": "pass", "O2": "pass", "O3": "pass", "O4": "fail:DUPLICATE", "P1": "pass", "P2": "pass", "L1": "pass", "L2": "pass", "L3": "pass" },
+        "riskFlags": [],
+        "duplicateOf": "hist_kenji_0142",
+        "decision": "blocked",
+        "paypal": null,
+        "final": "blocked"
+      },
+      {
+        "itemId": "in_04",
+        "classification": "invoice+payee_change_request",
+        "claim": { "vendorId": "ven_ana", "invoiceNumber": "INV-2207", "issueDate": "2026-11-04", "currency": "USD", "total": 240000, "po": "PO-1187", "requestedPayee": "billing@studi0-north.example", "lines": [ { "description": "Spring campaign illustrations — final 6", "quantity": 1, "unit": "item", "unitPrice": 240000, "amount": 240000 } ] },
+        "agreementId": "agr_ana_07",
+        "checks": { "O1": "pass", "O2": "pass", "O3": "pass", "O4": "pass", "P1": "hold:PAYEE_MISMATCH", "P2": "hold:CHANGE_REQUEST_PENDING", "L1": "pass", "L2": "pass", "L3": "pass" },
+        "riskFlags": ["SENDER_DOMAIN_MISMATCH", "LOOKALIKE_DOMAIN", "INSTRUCTION_TO_AI", "URGENCY"],
+        "decision": "held",
+        "paypal": null,
+        "final": "held"
+      },
+      {
+        "itemId": "in_05",
+        "classification": "invoice",
+        "claim": { "vendorId": "ven_leo", "invoiceNumber": "INV-031", "issueDate": "2026-11-05", "currency": "USD", "total": 240000, "po": "PO-1189", "requestedPayee": "leo@polyform3d.example", "lines": [ { "description": "Hero animation v2 — modelling & animation", "quantity": 40, "unit": "hour", "unitPrice": 6000, "amount": 240000 } ] },
+        "agreementId": "agr_leo_02",
+        "checks": { "O1": "pass", "O2": "hold:OVER_CAP", "O3": "hold:NOT_ACCEPTED", "O4": "pass", "P1": "pass", "P2": "pass", "L1": "pass", "L2": "pass", "L3": "pass" },
+        "riskFlags": [],
+        "decision": "held",
+        "paypal": null,
+        "final": "held"
+      },
+      {
+        "itemId": "in_06",
+        "classification": "invoice",
+        "claim": { "vendorId": "ven_sofia", "invoiceNumber": "1009", "issueDate": "2026-11-05", "currency": "USD", "total": 73800, "po": null, "requestedPayee": "sofia@linguaviva.example", "lines": [ { "description": "Translation of the Lumen & Lark brand guidelines, Italian → English", "quantity": 8200, "unit": "word", "unitPrice": 9, "amount": 73800 } ] },
+        "agreementId": "agr_sofia_05",
+        "agreementMatchedBy": "ai",
+        "checks": { "O1": "pass", "O2": "pass", "O3": "pass", "O4": "pass", "P1": "pass", "P2": "pass", "L1": "pass", "L2": "pass", "L3": "pass" },
+        "riskFlags": [],
+        "decision": "approved",
+        "paypal": "SUCCESS",
+        "final": "proven"
+      },
+      {
+        "itemId": "in_07",
+        "classification": "invoice",
+        "claim": { "vendorId": "ven_jonas", "invoiceNumber": "INV-001", "issueDate": "2026-11-05", "currency": "USD", "total": 64000, "po": "PO-1195", "requestedPayee": "jonas@bergaudio.example", "lines": [ { "description": "Sound design & mix — 60s product film", "quantity": 1, "unit": "item", "unitPrice": 64000, "amount": 64000 } ] },
+        "agreementId": "agr_jonas_01",
+        "checks": { "O1": "pass", "O2": "pass", "O3": "pass", "O4": "pass", "P1": "pass", "P2": "pass", "L1": "pass", "L2": "pass", "L3": "pass" },
+        "riskFlags": [],
+        "decision": "approved",
+        "paypal": "UNCLAIMED",
+        "final": "awaiting_proof"
+      },
+      {
+        "itemId": "in_08",
+        "classification": "invoice",
+        "claim": { "vendorId": "ven_tomas", "invoiceNumber": "INV-77", "issueDate": "2026-11-04", "currency": "USD", "total": 180000, "po": "PO-1193", "requestedPayee": "tomas@herreraweb.example", "lines": [ { "description": "Landing page build — milestone 2", "quantity": 1, "unit": "item", "unitPrice": 180000, "amount": 180000 } ] },
+        "agreementId": "agr_tomas_04",
+        "checks": { "O1": "pass", "O2": "pass", "O3": "pass", "O4": "pass", "P1": "pass", "P2": "pass", "L1": "pass", "L2": "pass", "L3": "pass" },
+        "riskFlags": [],
+        "decision": "approved",
+        "paypal": "SUCCESS",
+        "final": "proven"
+      },
+      {
+        "itemId": "in_09",
+        "classification": "other",
+        "claim": null,
+        "agreementId": null,
+        "checks": null,
+        "riskFlags": [],
+        "decision": null,
+        "paypal": null,
+        "final": "ignored"
+      }
+    ],
+    "totalsAfterRun": {
+      "proven": { "count": 4, "amount": 508800 },
+      "awaitingProof": { "count": 1, "amount": 64000 },
+      "held": { "count": 2, "amount": 480000 },
+      "stopped": { "count": 1, "amount": 115000, "$comment": "blocked duplicate 115000" },
+      "ignored": { "count": 1 }
+    },
+    "humanSteps": [
+      { "step": 1, "intentOf": "in_04", "action": "verify_payee", "input": { "method": "phone_call_to_number_on_file", "result": "not_confirmed", "note": "Ana confirmed by phone she never changed her payment details." }, "expect": "P1/P2 stay hold; approve stays disabled" },
+      { "step": 2, "intentOf": "in_04", "action": "mark_fraud", "expect": "rejected; vendor payee unchanged; change request marked fraudulent" },
+      { "step": 3, "intentOf": "in_05", "action": "accept_delivery", "input": { "deliveryId": "del_leo_02" }, "expect": "O3 pass; O2 still hold:OVER_CAP" },
+      { "step": 4, "intentOf": "in_05", "action": "approve", "input": { "amount": 192000, "reason": "Pay the contract cap (32 h); 8 h disputed with Leo." }, "expect": "approved → submitted → SUCCESS → proven with amount 192000" }
+    ],
+    "totalsAfterHumanSteps": {
+      "proven": { "count": 5, "amount": 700800 },
+      "awaitingProof": { "count": 1, "amount": 64000 },
+      "held": { "count": 0, "amount": 0 },
+      "stopped": { "count": 2, "amount": 355000, "$comment": "blocked duplicate 115000 + rejected fraud 240000" }
+    },
+    "comparisonMode": {
+      "$comment": "Same inbox, no gate (SPEC §6.6.4). Expected PayPal outcomes when every requested payment is sent as-is.",
+      "payouts": [
+        { "itemId": "in_01", "receiver": "priya@nairwords.example", "amount": 120000, "paypal": "SUCCESS" },
+        { "itemId": "in_02", "receiver": "kenji@kenjimotion.example", "amount": 135000, "paypal": "SUCCESS" },
+        { "itemId": "in_03", "receiver": "kenji@kenjimotion.example", "amount": 115000, "paypal": "SUCCESS", "problem": "second payment for INV-0142" },
+        { "itemId": "in_04", "receiver": "billing@studi0-north.example", "amount": 240000, "paypal": "UNCLAIMED", "problem": "sent to the impostor's address" },
+        { "itemId": "in_05", "receiver": "leo@polyform3d.example", "amount": 240000, "paypal": "SUCCESS", "problem": "40 h paid against a 32 h cap; work not yet accepted" },
+        { "itemId": "in_06", "receiver": "sofia@linguaviva.example", "amount": 73800, "paypal": "SUCCESS" },
+        { "itemId": "in_07", "receiver": "jonas@bergaudio.example", "amount": 64000, "paypal": "UNCLAIMED", "problem": "reported as paid while unclaimed" },
+        { "itemId": "in_08", "receiver": "tomas@herreraweb.example", "amount": 180000, "paypal": "SUCCESS" }
+      ],
+      "totalSent": 1167800
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "_source": {
+    "kind": "sandbox-recording",
+    "url": "https://api-m.sandbox.paypal.com/v1/payments/payouts",
+    "section": "POST /v1/payments/payouts",
+    "note": "Recorded from the PayPal sandbox on 2026-10-29 (HTTP 201) by packages/paypal/scripts/capture-fixtures.ts. access_token is replaced with a placeholder; client id, client secret and Authorization headers are never written. Batch, item and transaction ids are sandbox objects.",
+    "captured": "2026-10-29"
+  },
+  "response": {
+    "batch_header": {
+      "payout_batch_id": "YKMLRQVEET9KC",
+      "batch_status": "PENDING",
+      "sender_batch_header": {
+        "sender_batch_id": "pbp-e2cd23f5d3251e08754c4b8b4fb4",
+        "email_subject": "You have a payout from Lumen &amp; Lark Studio",
+        "email_message": "Lumen &amp; Lark · INV-CAPTURE · no PO"
+      }
+    },
+    "links": [
+      {
+        "href": "https://api.sandbox.paypal.com/v1/payments/payouts/YKMLRQVEET9KC",
+        "rel": "self",
+        "method": "GET",
+        "encType": "application/json"
+      }
+    ]
+  }
+}

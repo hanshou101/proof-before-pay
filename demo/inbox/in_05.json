@@ -1,0 +1,15 @@
+{
+  "id": "in_05",
+  "from": "Leo Martin <leo@polyform3d.example>",
+  "to": "Maya <maya@lumenlark.example>",
+  "subject": "INV-031 — Hero animation v2",
+  "receivedAt": "2026-11-05T19:30:00Z",
+  "bodyText": "Hi Maya,\n\nInvoice INV-031 for Hero animation v2 is attached — 40 hours in total; the extra render passes took longer than planned.\n\nRenders are in the review folder.\n\nCheers,\nLeo",
+  "attachments": [
+    {
+      "name": "Polyform3D-INV-031.pdf",
+      "path": "demo/inbox/files/Polyform3D-INV-031.pdf",
+      "sha256": "4a90a340ef827769c2fa035588d3e81395f6eb8047fdf8abdfd5cff1d35d95ed"
+    }
+  ]
+}

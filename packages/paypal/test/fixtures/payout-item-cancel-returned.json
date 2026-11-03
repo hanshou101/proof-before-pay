@@ -1,0 +1,49 @@
+{
+  "_source": {
+    "kind": "official-doc-sample-retained",
+    "url": "https://developer.paypal.com/payouts/use-payouts/cancel-reverse-payouts",
+    "section": "Cancel payout item → Sample response (POST /v1/payments/payouts-item/{id}/cancel, 200 OK)",
+    "note": "Retained as the documented success shape. On 2026-10-29 the sandbox could not produce it: an UNCLAIMED item answered 400 BATCH_NOT_COMPLETED while its batch was still processing and 500 INTERNAL_SERVICE_ERROR after the batch completed (cancel-batch-not-completed-400.json, cancel-internal-service-error-500.json). The unit test that reads RETURNED as cancelled therefore still runs on this official sample; whether the sandbox can return it at all is the open question in docs/research/paypal-sandbox-spike.md §(d).",
+    "captured": "2026-10-27"
+  },
+  "response": {
+    "payout_item_id": "5KUDKLF8SDC7S",
+    "transaction_id": "1DG93452WK758815H",
+    "activity_id": "0E158638XS0329101",
+    "transaction_status": "RETURNED",
+    "payout_item_fee": {
+      "currency": "USD",
+      "value": "0.35"
+    },
+    "payout_batch_id": "CQMWKDQF5GFLL",
+    "sender_batch_id": "Payouts_2018_100006",
+    "payout_item": {
+      "recipient_type": "EMAIL",
+      "amount": {
+        "value": "9.87",
+        "currency": "USD"
+      },
+      "note": "Thanks for your patronage!",
+      "receiver": "receiver@example.com",
+      "sender_item_id": "14Feb_234"
+    },
+    "time_processed": "2018-01-27T10:17:41Z",
+    "errors": {
+      "name": "RECEIVER_UNREGISTERED",
+      "message": "Receiver is unregistered",
+      "information_link": "https://developer.paypal.com/docs/api/payments.payouts-batch#errors"
+    },
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://api-m.sandbox.paypal.com/v1/payments/payouts-item/5KUDKLF8SDC7S",
+        "method": "GET"
+      },
+      {
+        "rel": "batch",
+        "href": "https://api-m.sandbox.paypal.com/v1/payments/payouts/CQMWKDQF5GFLL",
+        "method": "GET"
+      }
+    ]
+  }
+}

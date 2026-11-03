@@ -1,0 +1,48 @@
+{
+  "_source": {
+    "kind": "sandbox-recording",
+    "url": "https://api-m.sandbox.paypal.com/v1/payments/payouts-item/7J4XBEJH52D7A",
+    "section": "GET /v1/payments/payouts-item/7J4XBEJH52D7A",
+    "note": "Recorded from the PayPal sandbox on 2026-10-29 (HTTP 200) by packages/paypal/scripts/capture-fixtures.ts. access_token is replaced with a placeholder; client id, client secret and Authorization headers are never written. Batch, item and transaction ids are sandbox objects.",
+    "captured": "2026-10-29"
+  },
+  "response": {
+    "payout_item_id": "7J4XBEJH52D7A",
+    "transaction_id": "6UJ38420EW9418018",
+    "activity_id": "5BP61565158440456",
+    "transaction_status": "SUCCESS",
+    "payout_item_fee": {
+      "currency": "USD",
+      "value": "0.25"
+    },
+    "payout_batch_id": "YKMLRQVEET9KC",
+    "sender_batch_id": "pbp-e2cd23f5d3251e08754c4b8b4fb4",
+    "payout_item": {
+      "recipient_type": "EMAIL",
+      "amount": {
+        "currency": "USD",
+        "value": "1.00"
+      },
+      "note": "Lumen &amp; Lark · INV-CAPTURE · no PO",
+      "receiver": "priya11111@personal.example.com",
+      "sender_item_id": "capture_success",
+      "recipient_wallet": "PAYPAL",
+      "purpose": "GOODS"
+    },
+    "time_processed": "2026-10-29T12:57:34Z",
+    "links": [
+      {
+        "href": "https://api.sandbox.paypal.com/v1/payments/payouts-item/7J4XBEJH52D7A",
+        "rel": "self",
+        "method": "GET",
+        "encType": "application/json"
+      },
+      {
+        "href": "https://api.sandbox.paypal.com/v1/payments/payouts/YKMLRQVEET9KC",
+        "rel": "batch",
+        "method": "GET",
+        "encType": "application/json"
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "in_02",
+  "from": "Kenji Watanabe <kenji@kenjimotion.example>",
+  "to": "Maya <maya@lumenlark.example>",
+  "subject": "INV-0153 — logo animation",
+  "receivedAt": "2026-11-04T10:15:00Z",
+  "bodyText": "Hi Maya,\n\nPlease find INV-0153 for the logo animation (3 variants) attached.\n\nThanks again — it was a fun one!\nKenji",
+  "attachments": [
+    {
+      "name": "kenji-INV-0153.pdf",
+      "path": "demo/inbox/files/kenji-INV-0153.pdf",
+      "sha256": "6203bde68e0df0deadca9d4daf3a3ed6ec26080a14dea397ed454359e0494a84"
+    }
+  ]
+}

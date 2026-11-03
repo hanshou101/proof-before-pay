@@ -1,0 +1,23 @@
+{
+  "_source": {
+    "kind": "sandbox-recording",
+    "url": "https://api-m.sandbox.paypal.com/v1/payments/payouts",
+    "section": "POST /v1/payments/payouts with items[0].receiver empty",
+    "note": "Recorded from the PayPal sandbox on 2026-10-29 (HTTP 400) by packages/paypal/scripts/capture-fixtures.ts. access_token is replaced with a placeholder; client id, client secret and Authorization headers are never written. Batch, item and transaction ids are sandbox objects.",
+    "captured": "2026-10-29"
+  },
+  "response": {
+    "name": "VALIDATION_ERROR",
+    "message": "Invalid request - see details",
+    "debug_id": "f6545804ee9cb",
+    "information_link": "https://developer.paypal.com/docs/api/payments.payouts-batch/#errors",
+    "details": [
+      {
+        "field": "items[0].receiver",
+        "location": "body",
+        "issue": "Receiver is invalid or does not match with type"
+      }
+    ],
+    "links": []
+  }
+}

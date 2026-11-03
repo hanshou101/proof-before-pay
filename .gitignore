@@ -1,0 +1,28 @@
+# 依赖与构建
+node_modules/
+.venv/
+venv/
+__pycache__/
+dist/
+build/
+.next/
+# 本机数据（账本、AI 原始输出、demo:reset 种下的历史）——SPEC §6.3.1「data/ 不進 Git」
+/data/
+apps/server/data/
+# 密钥
+.env
+.env.*
+!.env.example
+# 大文件：视频走 Release 附件或人工上传
+*.mp4
+*.mov
+*.webm
+*.wav
+# 演示影片的工作檔：錄製的幀、素材片、旁白、渲染暫存與成片（design/sample-video/README.md）
+/proof/video/
+/video/src/generated/
+# 杂项
+.DS_Store
+*.log
+# E2E 的关键日志是证据（SPEC 票 T8），去敏后要进仓库
+!proof/e2e/*.log
